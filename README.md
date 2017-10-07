@@ -6,8 +6,8 @@ bbbb
 ## あああああ
 
 |いいいいいい|aaaaaaaaa|
-|:--|:--|
-|ffffff|rrrrrrr|
+|:--|--:|
+|fff<br>fff|rrrrrrr|
 
 
 ううううう
