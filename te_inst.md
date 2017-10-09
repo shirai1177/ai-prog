@@ -1,11 +1,26 @@
 # Python インストール
 
-OSはCentOS7
+OSはCentOS7。GCPのmicroインスタンスの場合、SWAPを有効にする
+
+```
+sudo su -
+dd if=/dev/zero of=/swapfile bs=1M count=1024
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+free -m
+vi /etc/fstab
+/swapfile                                 swap                    swap    defaults        0 0
+```
 
 ## Anaconda3 (4.x.x) の入手とインストール
 
 https://www.anaconda.com/download/ から対応プラットフォーム版を入手する。
 
+```
+sudo yum -y install bzip2
+bash Anaconda3-5.0.0.1-Linux-x86_64.sh
+```
 
 ## jupyter notebook の設定
 
