@@ -33,6 +33,9 @@ bash Anaconda3-5.0.0.1-Linux-x86_64.sh
 
 ## jupyter notebook の設定
 
+作業用フォルダを aihome とする場合。<br>
+httpsで起動するため、opensslで鍵の生成と登録を行う。<br>
+
 ```
 mkdir aihome
 jupyter notebook --generate-config
