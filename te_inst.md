@@ -1,5 +1,12 @@
 # Python インストール
 
+OSはCentOS7
+
+## Anaconda3 (4.x.x) の入手とインストール
+
+https://www.anaconda.com/download/ から対応プラットフォーム版を入手する。
+
+
 ## jupyter notebook の設定
 
 ```
