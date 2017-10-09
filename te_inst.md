@@ -13,6 +13,15 @@ vi /etc/fstab
 /swapfile                                 swap                    swap    defaults        0 0
 ```
 
+SE-Linuxを無効化
+
+```
+vi /etc/selinux/config
+SELINUX=disabled
+
+reboot
+```
+
 ## Anaconda3 (4.x.x) の入手とインストール
 
 https://www.anaconda.com/download/ から対応プラットフォーム版を入手する。
