@@ -113,7 +113,7 @@ for i in range(103, 101, -1):
 Pythonは [] キーワードでリスト（配列）を生成できます。
 
 ```python
-fruits = ["apple", "banana", "cherry"]
+fruits = ["apple", "banana", "orange"]
 
 print("fruit = " + fruits[1])
 
@@ -130,10 +130,10 @@ for i, f in enumerate(fruits):
 fruit = banana
 apple
 banana
-cherry
+orange
 0 apple
 1 banana
-2 cherry
+2 orange
 ```
 
 > enumerate関数を使えば、インデックスとリストの要素を取り出すことができます。
@@ -144,7 +144,7 @@ cherry
 Pythonは {} キーワードでディクショナリを生成できます。ディクショナリとはキーと値をマッピングしたものです。
 
 ```python
-fruits = {"apple":100, "banana":200, "cherry":300}
+fruits = {"apple":100, "banana":200, "orange":300}
 
 print(fruits["apple"])
 
@@ -158,7 +158,7 @@ for key in fruits:
 100
 apple 100
 banana 200
-cherry 300
+orange 300
 ```
 
 <div style="page-break-before:always"></div>
@@ -169,23 +169,21 @@ cherry 300
 Pythonではdefキーワードを使って関数を定義します。
 
 ```python
-def sum(start, end):
-    result = 0
-    for i in range(start, end + 1):
-        result = result + i
-    return result
+def myfunc(obj):
+    print("Object => {}".format(obj))
+    return len(obj)
 
-print(sum(1, 1))
-print(sum(1, 5))
-print(sum(1, 10))
+print(myfunc("cat"))
+print(myfunc("tiger"))
 ```
 
 実行結果は次のように表示されるでしょう。
 
 ```
-1
-15
-55
+Object => cat
+3
+Object => tiger
+5
 ```
 
 <div style="page-break-before:always"></div>
@@ -199,36 +197,27 @@ class Car:
     def __init__(self, name, gas):
         self.name = name
         self.gas = gas
-
     def move(self):
         if self.gas > 0:
             self.gas = self.gas - 1
-            print("{}: move".format(self.name))
+            print("{} {}: move".format(self.gas,self.name))
         else:
-            print("{}: stop".format(self.name))
-
+            print("{} {}: stop".format(self.gas,self.name))
 
 car1 = Car('kbox', 3)
-car2 = Car('Kwagon', 5)
 
 for i in range(5):
     car1.move()
-    car2.move()
 ```
 
 実行結果は次のように表示されるでしょう。
 
 ```
-kbox: move
-Kwagon: move
-kbox: move
-Kwagon: move
-kbox: move
-Kwagon: move
-kbox: stop
-Kwagon: move
-kbox: stop
-Kwagon: move
+2 kbox: move
+1 kbox: move
+0 kbox: move
+0 kbox: stop
+0 kbox: stop
 ```
 
 クラスの中でインスタンス自身を参照するにはselfキーワードを使います。またクラスに定義したメソッドの第1引数にはselfを指定する必要があります。また、クラスにコンストラクタを定義する場合は \_\_init\_\_メソッドを実装します。
