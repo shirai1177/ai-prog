@@ -1,225 +1,242 @@
-## Python入門ハンズオン
+## 1.8 NumPy
 
-それでは実際にPythonプログラムの概要を見てみましょう。
+NumPyはPythonの数値計算ライブラリです。本講座では主にテストデータの作成や、ニューラルネットワーク上の演算（行列演算）に利用します。
 
-### Hello World
-
-画面に"Hello World"を表示してみましょう。
+NumPyを使う場合は以下のようにimportします。
 
 ```python
-print("Hello World")
+import numpy as np
 ```
-
-実行結果は次のように表示されるでしょう。
-
-```
-Hello World
-```
-
-
-### 変数とデータ型
-
-Pythonの文字列、数値、実数、真偽値型、None型を確認してみましょう。Pythonは「動的型付き言語」です。変数の型は状況に応じて動的に決定されます。
-
-```python
-name = "John"
-age = 20
-height = 170.1
-license = True # False
-money = None
-
-print(type(name))
-print(type(age))
-print(type(height))
-print(type(license))
-print(type(money))
-```
-
-実行結果は次のように表示されるでしょう。
-
-```
-<class 'str'>
-<class 'int'>
-<class 'float'>
-<class 'bool'>
-<class 'NoneType'>
-```
-
-type関数を使えばデータ型を確認できます。
-
-> Pythonプログラムの中でコメントは # で表現します。
 
 <div style="page-break-before:always"></div>
 
 
-### if文
+### NumPy配列の作成
 
-if文は次のようになります。論理積を表現するときは and キーワードでつなぎます。また他言語のように {} は使わずにインデントでスコープを表現します。
-
-```python
-name = "John"
-age = 20
-license = True
-
-if age >= 20 and license:
-    print("OK " + name)
-    print("OK {}".format(name))
-else:
-    print("NG")
-```
-
-実行結果は次のように表示されるでしょう。真の場合の２つのprintは同じ意味です。
-
-```
-OK John
-OK John
-```
-
-> 論理和は or キーワードを使います。
-
-
-### for文
-
-for文を使って繰り返し構造を定義できます。指定回数繰り返すにはrange関数を使います。
+NumPy配列を生成するにはいくつかの方法があります。
 
 ```python
-for i in range(3):
-    print(i)
+import numpy as np
 
-for i in range(11, 13):
-    print(i)
+a = np.arange(3)
+print(a)
 
-for i in range(103, 101, -1):
-    print(i)
+b = np.array([10, 20, 30])
+print(b)
+
+c = np.random.rand(3)
+print(c)
 ```
 
 実行結果は次のように表示されるでしょう。
 
 ```
-0
-1
+[0 1 2]
+[10 20 30]
+[ 0.20971528  0.86719696  0.70371265]
+```
+
+
+配列の要素の範囲を指定して生成する場合は np.arange メソッドを使います。
+
+```python
+a = np.arange(3)
+```
+
+上記の場合 [0 1 2] というNumPy配列が生成されます。
+
+またnp.arrayメソッドを使えば通常の配列をNumPy配列に変換することができます。
+
+```python
+b = np.array([10, 20, 30])
+```
+
+上記の場合 [10 20 30] というNumPy配列が生成されます。
+
+np.random.randメソッドを使えば、乱数で構成される配列を生成できます。
+
+```python
+c = np.random.rand(3)
+```
+
+乱数は [ 0.56886361  0.68599281  0.7017446 ] のように表示されるでしょう。
+
+<div style="page-break-before:always"></div>
+
+
+### 配列の操作
+
+次は配列の操作について見てみましょう。
+
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+print(a)
+print(a.shape)
+
+print(a[1])
+print(a[1:5])
+print(a[5:])
+```
+
+実行結果は次のように表示されるでしょう。
+
+```
+[1 2 3 4 5 6 7 8 9]
+(9,)
 2
-11
-12
-103
-102
+[2 3 4 5]
+[6 7 8 9]
 ```
+
+NumPy配列は shape プロパティにアクセスすることで、配列の次元ごとの要素数をタプルで取得できます。上記の場合は (9,) と表示されます。
+
+> タプルはリストと同じように扱うことができますが、内部の要素を変更することはできません。
+
+
+PyhtonのリストやNumPy配列は要素へのアクセスを柔軟に指定できます。
+
+```python
+print(a[1])   # => 2
+print(a[1:5]) # => [2 3 4 5]
+print(a[5:])  # => [6 7 8 9]
+```
+
+> NumPy配列でなく通常のリストでも上記のようにアクセスできます。
 
 <div style="page-break-before:always"></div>
 
 
-### リスト
-
-Pythonは [] キーワードでリスト（配列）を生成できます。
+NumPy配列は次元数を変更することもできます。次のプログラムを見てみましょう。
 
 ```python
-fruits = ["apple", "banana", "orange"]
+import numpy as np
 
-print("fruit = " + fruits[1])
+a = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+b = a.reshape(3, 3)
+print(b)
+print(b.shape)
 
-for f in fruits:
-    print(f)
+print(b[1])
+print(b[1,1])
 
-for i, f in enumerate(fruits):
-    print(i, f)
+print(b[0:2])
+print(b[0:2,1])
+
+print(b[:,2])
 ```
 
 実行結果は次のように表示されるでしょう。
 
 ```
-fruit = banana
-apple
-banana
-orange
-0 apple
-1 banana
-2 orange
-```
-
-> enumerate関数を使えば、インデックスとリストの要素を取り出すことができます。
-
-
-### ディクショナリ
-
-Pythonは {} キーワードでディクショナリを生成できます。ディクショナリとはキーと値をマッピングしたものです。
-
-```python
-fruits = {"apple":100, "banana":200, "orange":300}
-
-print(fruits["apple"])
-
-for key in fruits:
-    print(key, fruits[key])
-```
-
-実行結果は次のように表示されるでしょう。
-
-```
-100
-apple 100
-banana 200
-orange 300
-```
-
-<div style="page-break-before:always"></div>
-
-
-### 関数
-
-Pythonではdefキーワードを使って関数を定義します。
-
-```python
-def myfunc(obj):
-    print("Object => {}".format(obj))
-    return len(obj)
-
-print(myfunc("cat"))
-print(myfunc("tiger"))
-```
-
-実行結果は次のように表示されるでしょう。
-
-```
-Object => cat
-3
-Object => tiger
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+(3, 3)
+[4 5 6]
 5
+[[1 2 3]
+ [4 5 6]]
+[2 5]
+[3 6 9]
+```
+
+NumPy配列は reshape メソッドによって配列の次元数を変更できます。
+
+```python
+b = a.reshape(3, 3)
+```
+
+また多次元配列は次のようにカンマ区切りで要素にアクセスできます。
+
+```python
+print(b[1,1])
+```
+
+少し特殊な書き方ですが、次のように2次元目の要素番号だけを指定することもできます。
+
+```python
+print(b[:,2])
 ```
 
 <div style="page-break-before:always"></div>
 
-### クラス
 
-Pythonはオブジェクト指向言語です。クラスを定義するには次のように実装します。
+### NumPy配列の演算
+
+NumPy配列の演算を見てみましょう。
 
 ```python
-class Car:
-    def __init__(self, name, gas):
-        self.name = name
-        self.gas = gas
-    def move(self):
-        if self.gas > 0:
-            self.gas = self.gas - 1
-            print("{} {}: move".format(self.gas,self.name))
-        else:
-            print("{} {}: stop".format(self.gas,self.name))
+import numpy as np
 
-car1 = Car('kbox', 3)
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
 
-for i in range(5):
-    car1.move()
+c = a + b
+print(c)
+
+d = a * b
+print(d)
+
+e = a.dot(b)
+print(e)
 ```
 
 実行結果は次のように表示されるでしょう。
 
 ```
-2 kbox: move
-1 kbox: move
-0 kbox: move
-0 kbox: stop
-0 kbox: stop
+[5 7 9]
+[ 4 10 18]
+32
 ```
 
-クラスの中でインスタンス自身を参照するにはselfキーワードを使います。またクラスに定義したメソッドの第1引数にはselfを指定する必要があります。また、クラスにコンストラクタを定義する場合は \_\_init\_\_メソッドを実装します。
+NumPy配列の各要素ごとに加算や、積算することができます。
 
-> クラスからインスタンスを生成するときにnewキーワードは不要です。
+```python
+c = a + b
+print(c) #=> [5 7 9]
+
+d = a * b
+print(d) #=> [ 4 10 18]
+```
+
+また2つの配列（ベクトル）の内積を求めるにはdotメソッドを使います。
+
+```python
+e = a.dot(b)
+print(e) #=> 32
+```
+
+> dot積は (1 \* 4) + (2 \* 5) + (3 \* 6) = 32 となります。
+
+<div style="page-break-before:always"></div>
+
+
+### ブロードキャスト
+
+NumPy配列は次元数の異なるオペランドを演算することができます。このような仕組みをブロードキャストと呼びます。
+
+```python
+import numpy as np
+
+a = np.array([1, 2])
+b = a + 1
+print(b)
+
+c = np.array([[1, 2], [3, 4]])
+d = c + a
+print(d)
+```
+
+実行結果は次のように表示されるでしょう。
+
+```
+[2 3]
+[[2 4]
+ [4 6]]
+```
+
+<img src="img/01_08.png" width="400px">
+
+<img src="img/01_09.png" width="400px">
