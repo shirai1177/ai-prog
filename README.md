@@ -62,14 +62,16 @@ age = 20
 license = True
 
 if age >= 20 and license:
-    print("OK " + name)
+    print("OK " + name)
+    print("OK {}".format(name))
 else:
     print("NG")
 ```
 
-実行結果は次のように表示されるでしょう。
+実行結果は次のように表示されるでしょう。真の場合の２つのprintは同じ意味です。
 
 ```
+OK John
 OK John
 ```
 
@@ -113,19 +115,19 @@ Pythonは [] キーワードでリスト（配列）を生成できます。
 ```python
 fruits = ["apple", "banana", "cherry"]
 
-print(fruits[1])
+print("fruit = " + fruits[1])
 
-for fruit in fruits:
-    print(fruit)
+for f in fruits:
+    print(f)
 
-for i, fruit in enumerate(fruits):
-    print(i, fruit)
+for i, f in enumerate(fruits):
+    print(i, f)
 ```
 
 実行結果は次のように表示されるでしょう。
 
 ```
-banana
+fruit = banana
 apple
 banana
 cherry
