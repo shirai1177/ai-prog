@@ -19,20 +19,19 @@ NumPy配列を生成するにはいくつかの方法があります。
 ```python
 import numpy as np
 
-a = np.arange(5)
+a = np.array([1, 2, 3])
 print(a)
 
-b = np.array([1, 2, 3])
+b = np.arange(5)
 print(b)
 ```
 
-実行結果は次のように表示されるでしょう。
+実行結果は次のように表示されます。
 
 ```
-[0 1 2 3 4]
 [1 2 3]
+[0 1 2 3 4]
 ```
-
 
 配列の要素の範囲を指定して生成する場合は np.arange メソッドを使います。
 
@@ -152,45 +151,40 @@ NumPy配列の演算を見てみましょう。
 ```python
 import numpy as np
 
-a = np.array([1, 2, 3])
-b = np.array([4, 5, 6])
+a = np.array([1, 2])
+b = np.array([3, 4])
 
-c = a + b
+print(a + b)
+print(a * b)
+
+c = a.dot(b)
 print(c)
-
-d = a * b
-print(d)
-
-e = a.dot(b)
-print(e)
 ```
 
 実行結果は次のように表示されるでしょう。
 
 ```
-[5 7 9]
-[ 4 10 18]
-32
+[4 6]
+[3 8]
+11
 ```
 
 NumPy配列の各要素ごとに加算や、積算することができます。
 
 ```python
-c = a + b
-print(c) #=> [5 7 9]
-
-d = a * b
-print(d) #=> [ 4 10 18]
+print(a + b)  #=> [5 7 9]
+print(a * b)  #=> [ 4 10 18]
 ```
 
 また2つの配列（ベクトル）の内積を求めるにはdotメソッドを使います。
 
 ```python
-e = a.dot(b)
-print(e) #=> 32
+c = a.dot(b)
+print(c) #=> 11
 ```
 
-> dot積は (1 \* 4) + (2 \* 5) + (3 \* 6) = 32 となります。
+> dot積は (1 \* 3) + (2 \* 4) = 11 となります。
+> 数学では1次元配列をベクトル、2次元配列を行列、3次元以上をテンソルまたは多次元配列とよびます。
 
 <div style="page-break-before:always"></div>
 
