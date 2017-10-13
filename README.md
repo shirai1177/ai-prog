@@ -1,22 +1,12 @@
-## 1.9 Matplotlib
+## Matplotlib
 
-MatplotlibはPythonのグラフ描画ライブラリです。本講座では主に折線グラフや散布図を表示するために利用します。
+MatplotlibはPythonのグラフ描画のためのライブラリです。このハンズオンでは折線グラフや散布図を表示するために利用します。
 
 Matplotlibを使う場合は以下のようにimportします。
 
 ```python
 import matplotlib.pyplot as plt
 ```
-
-またJupyter Notebookで実行する場合は以下のように記述するとグラフをinline表示できます。
-
-```python
-%matplotlib inline
-```
-
-> ノーブックの先頭にimportの前に記述しておくと良いでしょう。
-
-<div style="page-break-before:always"></div>
 
 ### グラフの描画
 
@@ -28,8 +18,8 @@ Matplotlibで折れ線グラフを表示するには次のように実装しま�
 import matplotlib.pyplot as plt
 import numpy as np
 
-x = np.arange(-3, 3, 0.1)
-y = x**2
+x = np.arange(-5, 5, 0.1)
+y = x**3
 
 plt.plot(x, y)
 plt.show()
@@ -37,10 +27,10 @@ plt.show()
 
 実行結果は次のように表示されるでしょう。
 
-<img src="img/01_10.png" width="400px">
+<img src="img/matplot.png" width="400px">
 
-
-ここではテストデータとしてNumpy配列 x、y を作成しています。次にplt.plotメソッドを呼び出して折れ線グラフを作成しています。最後にplt.showメソッドを呼び出すとウィンドウが表示されます。
+ここではデータとしてNumpy配列 x、y を作成しています。次にplt.plotメソッドを呼び出して折れ線グラフを作成しています。
+最後にplt.showメソッドを呼び出すとウィンドウが表示されます。
 
 <div style="page-break-before:always"></div>
 
