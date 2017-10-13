@@ -30,6 +30,14 @@ print(b)
 [0 1 2 3 4]
 ```
 
+np.arrayメソッドを使えば通常の配列をNumPy配列に変換することができます。
+
+```python
+b = np.array([1, 2, 3])
+```
+
+上記の場合 [1 2 3] というNumPy配列が生成されます。
+
 配列の要素の範囲を指定して生成する場合は np.arange メソッドを使います。
 
 ```python
@@ -37,14 +45,6 @@ a = np.arange(5)
 ```
 
 上記の場合 [0 1 2 3 4] というNumPy配列が生成されます。
-
-またnp.arrayメソッドを使えば通常の配列をNumPy配列に変換することができます。
-
-```python
-b = np.array([1, 2, 3])
-```
-
-上記の場合 [1 2 3] というNumPy配列が生成されます。
 
 <div style="page-break-before:always"></div>
 
