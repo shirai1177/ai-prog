@@ -1,4 +1,4 @@
-## Matplotlib
+# Matplotlib
 
 MatplotlibはPythonのグラフ描画のためのライブラリです。このハンズオンでは折線グラフや散布図を表示するために利用します。
 
@@ -8,9 +8,9 @@ Matplotlibを使う場合は以下のようにimportします。
 import matplotlib.pyplot as plt
 ```
 
-### グラフの描画
+## グラフの描画
 
-#### 折れ線グラフの表示
+### 折れ線グラフの表示
 
 Matplotlibで折れ線グラフを表示するには次のように記述します。
 
@@ -35,7 +35,7 @@ plt.show()
 <div style="page-break-before:always"></div>
 
 
-#### 散布図の表示
+### 散布図の表示
 
 Matplotlibで散布図を表示するには次のように記述します。
 
@@ -60,9 +60,9 @@ plt.show()
 <div style="page-break-before:always"></div>
 
 
-#### （参考）グラフのカスタマイズ
+### （参考）グラフのカスタマイズ
 
-グラフには凡例（legend）を付けたり、x軸（y軸）に説明に説明を付けたり、様々なカスタマイズができるようになっています。
+グラフには凡例（legend）を付けたり、x軸（y軸）に説明を付けたり、様々なカスタマイズが可能です。
 
 ```python
 import matplotlib.pyplot as plt
@@ -87,5 +87,5 @@ plt.show()
 
 <img src="img/matplot_03.png" width="400px">
 
-プログラムの動きは、各自でいろいろパラメータを変更してみて確かめてください。
+各自でいろいろパラメータを変更してみてプログラムの動きを確かめてみましょう。
 
