@@ -9,9 +9,6 @@ NumPyを使うには次のようにimportします。
 import numpy as np
 ```
 
-<div style="page-break-before:always"></div>
-
-
 ### NumPy配列の作成
 
 NumPy配列を生成するにはいくつかの方法があります。
