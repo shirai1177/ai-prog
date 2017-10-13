@@ -194,8 +194,9 @@ print(c) #=> 11
 
 NumPyでは形状の異なる配列の演算も可能です。この機能をブロードキャストと言います。
 
-<img src="img/numpy_01.png" width="400px">
 ブロードキャストの例：10が 2 * 2 の行列に拡張される
+<img src="img/numpy_01.png" width="600px">
+
 
 ```python
 import numpy as np
@@ -217,3 +218,7 @@ print(b * a)
 [[1 4]
  [3 8]]
 ```
+
+ブロードキャストの例：1次元配列がが、2次元配列に拡張される
+<img src="img/numpy_02.png" width="600px">
+
