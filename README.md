@@ -1,216 +1,130 @@
-## NumPyライブラリ
+## 1.9 Matplotlib
 
-機械学習・ディープラーニングの実装では、配列や行列の計算が多く登場します。
-NumPy（ナムパイ）ライブラリの配列クラスには便利なメソッドが多く用意されており、このハンズオンにおいてもそれらのメソッドを利用します。
+MatplotlibはPythonのグラフ描画ライブラリです。本講座では主に折線グラフや散布図を表示するために利用します。
 
-NumPyを使うには次のようにimportします。
+Matplotlibを使う場合は以下のようにimportします。
 
 ```python
-import numpy as np
+import matplotlib.pyplot as plt
 ```
+
+またJupyter Notebookで実行する場合は以下のように記述するとグラフをinline表示できます。
+
+```python
+%matplotlib inline
+```
+
+> ノーブックの先頭にimportの前に記述しておくと良いでしょう。
 
 <div style="page-break-before:always"></div>
 
+### グラフの描画
 
-### NumPy配列の作成
+#### 折れ線グラフの表示
 
-NumPy配列を生成するにはいくつかの方法があります。
+Matplotlibで折れ線グラフを表示するには次のように実装します。
 
 ```python
+import matplotlib.pyplot as plt
 import numpy as np
 
-a = np.array([1, 2, 3])
-print(a)
+x = np.arange(-3, 3, 0.1)
+y = x**2
 
-b = np.arange(5)
-print(b)
-```
-
-実行結果は次のように表示されます。
-
-```
-[1 2 3]
-[0 1 2 3 4]
-```
-
-配列の要素の範囲を指定して生成する場合は np.arange メソッドを使います。
-
-```python
-a = np.arange(5)
-```
-
-上記の場合 [0 1 2 3 4] というNumPy配列が生成されます。
-
-またnp.arrayメソッドを使えば通常の配列をNumPy配列に変換することができます。
-
-```python
-b = np.array([1, 2, 3])
-```
-
-上記の場合 [1 2 3] というNumPy配列が生成されます。
-
-<div style="page-break-before:always"></div>
-
-
-### 配列の操作
-
-配列の操作について見てみましょう。
-
-```python
-import numpy as np
-
-a = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
-print(a)
-print(a.shape)
-print(a[1])
-print(a[1:5])
-print(a[5:])
-```
-
-実行結果は次のように表示されます。
-
-```
-[1 2 3 4 5 6 7 8 9]
-(9,)
-2
-[2 3 4 5]
-[6 7 8 9]
-```
-
-NumPy配列は shape プロパティにアクセスすることで、配列の次元ごとの要素数をタプルで取得できます。上記の場合は (9,) と表示されます。
-
-> NumPy配列でなく通常のリストでも上記のようにアクセスできます。
-
-<div style="page-break-before:always"></div>
-
-
-NumPy配列は次元数を変更することもできます。
-
-```python
-import numpy as np
-
-a = np.array([1, 2, 3, 4])
-b = a.reshape(2, 2)
-print(b)
-print(b.shape)
-print(b[1])
-print(b[1,1])
-print(b[0:1])
-print(b[0:1,1])
-print(b[:,1])
-
-c = b.flatten()
-print(c)
-```
-
-実行結果は次のように表示されます。
-
-```
-[[1 2]
- [3 4]]
-(2, 2)
-[3 4]
-4
-[[1 2]]
-[2]
-[2 4]
-[1 2 3 4]
-```
-
-NumPy配列は reshape メソッドによって配列の次元数を変更できます。
-
-```python
-b = a.reshape(2, 2)
-```
-
-また多次元配列は次のようにカンマ区切りで要素にアクセスできます。
-
-```python
-print(b[1,1])
-```
-
-2次元目の要素番号だけを指定することもできます。
-
-```python
-print(b[:,2])
-```
-
-N次元配列を1次元に戻すには、flatten メソッドを使います。
-
-```python
-c = b.flatten()
-```
-
-<div style="page-break-before:always"></div>
-
-
-### NumPy配列の演算
-
-NumPy配列の演算を見てみましょう。
-
-```python
-import numpy as np
-
-a = np.array([1, 2])
-b = np.array([3, 4])
-
-print(a + b)
-print(a * b)
-
-c = a.dot(b)
-print(c)
+plt.plot(x, y)
+plt.show()
 ```
 
 実行結果は次のように表示されるでしょう。
 
-```
-[4 6]
-[3 8]
-11
-```
+<img src="img/01_10.png" width="400px">
 
-NumPy配列の各要素ごとに加算や、積算することができます。
 
-```python
-print(a + b)  #=> [4 6]
-print(a * b)  #=> [3 8]
-```
-
-2つの配列（ベクトル）の内積を求めるにはdotメソッドを使います。
-
-```python
-c = a.dot(b)
-print(c) #=> 11
-```
-
-> dot積は (1 \* 3) + (2 \* 4) = 11 となります。
-
-> 数学では1次元配列をベクトル、2次元配列を行列、3次元以上をテンソルまたは多次元配列とよびます。
+ここではテストデータとしてNumpy配列 x、y を作成しています。次にplt.plotメソッドを呼び出して折れ線グラフを作成しています。最後にplt.showメソッドを呼び出すとウィンドウが表示されます。
 
 <div style="page-break-before:always"></div>
 
 
-### ブロードキャスト
+#### 散布図の表示
 
-NumPyでは形状の異なる配列の演算も可能です。この機能をブロードキャストと言います。
+Matplotlibで散布図を表示するには次のように実装します。
 
 ```python
 import numpy as np
+import matplotlib.pyplot as plt
 
-a = np.array([1, 2])
-print(a + 1)
+x = np.random.rand(10)
+y = np.random.rand(10)
 
-b = np.array([[1, 2], [3, 4]])
-print(b * 3)
-print(b * a)
+plt.scatter(x, y)
+plt.show()
 ```
 
 実行結果は次のように表示されるでしょう。
 
+<img src="img/01_11.png" width="400px">
+
+
+先ほどと同じようにここではテストデータとして、ランダムな要素を持つNumpy配列 x、 y を作成しています。次にplt.scatterメソッドを呼び出して散布図を作成しています。最後にplt.showメソッドを呼び出すとウィンドウが表示されます。
+
+<div style="page-break-before:always"></div>
+
+
+#### （参考）グラフのカスタマイズ
+
+グラフには凡例（legend）を付けたり、x軸（y軸）に説明に説明を付けたり、様々なカスタマイズができるようになっています。先ほどの散布図の表示をカスタマイズしてみましょう。
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.random.rand(10)
+y = np.random.rand(10)
+
+plt.xlim(-1, 2)
+plt.ylim(-1, 2)
+
+plt.xlabel("my x axis")
+plt.ylabel("my y axis")
+
+plt.scatter(x, y, s=100, label="my data", marker='x', color="green")
+plt.legend()
+plt.show()
 ```
-[2 3]
-[[ 3  6]
- [ 9 12]]
-[[1 4]
- [3 8]]
+
+実行結果は次のように表示されるでしょう。
+
+<img src="img/01_12.png" width="400px">
+
+プログラムの詳細を見てみましょう。
+
+x軸、y軸の表示範囲を指定するには plt.xlim、ylim メソッドを使います。
+
+```python
+plt.xlim(-1, 2)
+plt.ylim(-1, 2)
+```
+
+上記の場合、x軸、y軸ともに表示範囲が -1 から 2 までになります。
+
+
+x軸、y軸の説明を追加するには plt.xlabel、ylabelメソッドを追加します。
+
+
+```python
+plt.xlabel("my x axis")
+plt.ylabel("my y axis")
+```
+
+
+散布図の表示をカスタマイズするには、scatterメソッドの引数を指定します。
+
+```python
+plt.scatter(x, y, s=100, label="my data", marker='x', color="green")
+```
+
+ここではサイズに100を指定し、凡例用のラベルに"my data"、マーカーの形状に"x"、カラーに"green"をそれぞれ指定しています。また、データの凡例ラベル（"my data"）をグラフ上に表示するにはplt.legendメソッドを呼び出す必要があります。
+
+```python
+plt.legend()
 ```
