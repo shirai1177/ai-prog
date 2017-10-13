@@ -189,6 +189,32 @@ print(c) #=> 11
 
 <div style="page-break-before:always"></div>
 
+### NumPy配列の関数渡し
+
+NumPy配列を関数の引数に渡すことも可能です。戻り値もNumPy配列で戻ります。
+
+```
+import numpy as np
+
+def myfunc(x):
+    return x * 10
+
+a = myfunc(3)
+print(a)
+
+b = np.array([[1, 2, 3],[4, 5, 6]])
+b = myfunc(b)
+print(b)
+```
+
+結果は次のようになります。
+```
+30
+[[10 20 30]
+ [40 50 60]]
+```
+
+<div style="page-break-before:always"></div>
 
 ### ブロードキャスト
 
