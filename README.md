@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 #### 折れ線グラフの表示
 
-Matplotlibで折れ線グラフを表示するには次のように実装します。
+Matplotlibで折れ線グラフを表示するには次のように記述します。
 
 ```python
 import matplotlib.pyplot as plt
@@ -37,14 +37,14 @@ plt.show()
 
 #### 散布図の表示
 
-Matplotlibで散布図を表示するには次のように実装します。
+Matplotlibで散布図を表示するには次のように記述します。
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = np.random.rand(10)
-y = np.random.rand(10)
+x = np.random.rand(30)
+y = np.random.rand(30)
 
 plt.scatter(x, y)
 plt.show()
@@ -52,10 +52,10 @@ plt.show()
 
 実行結果は次のように表示されるでしょう。
 
-<img src="img/01_11.png" width="400px">
+<img src="img/matplot_02.png" width="400px">
 
-
-先ほどと同じようにここではテストデータとして、ランダムな要素を持つNumpy配列 x、 y を作成しています。次にplt.scatterメソッドを呼び出して散布図を作成しています。最後にplt.showメソッドを呼び出すとウィンドウが表示されます。
+データとして、ランダムな要素を持つNumpy配列 x、 y を作成しています。
+次にplt.scatterメソッドを呼び出して散布図を作成しています。
 
 <div style="page-break-before:always"></div>
 
