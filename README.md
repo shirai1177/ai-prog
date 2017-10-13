@@ -87,35 +87,5 @@ plt.show()
 
 <img src="img/matplot_03.png" width="400px">
 
-プログラムの詳細を見てみましょう。
+プログラムの詳細については、各自でいろいろパラメータを変更してみて、動きを確かめてください。
 
-x軸、y軸の表示範囲を指定するには plt.xlim、ylim メソッドを使います。
-
-```python
-plt.xlim(-1, 2)
-plt.ylim(-1, 2)
-```
-
-上記の場合、x軸、y軸ともに表示範囲が -1 から 2 までになります。
-
-
-x軸、y軸の説明を追加するには plt.xlabel、ylabelメソッドを追加します。
-
-
-```python
-plt.xlabel("my x axis")
-plt.ylabel("my y axis")
-```
-
-
-散布図の表示をカスタマイズするには、scatterメソッドの引数を指定します。
-
-```python
-plt.scatter(x, y, s=100, label="my data", marker='x', color="green")
-```
-
-ここではサイズに100を指定し、凡例用のラベルに"my data"、マーカーの形状に"x"、カラーに"green"をそれぞれ指定しています。また、データの凡例ラベル（"my data"）をグラフ上に表示するにはplt.legendメソッドを呼び出す必要があります。
-
-```python
-plt.legend()
-```
