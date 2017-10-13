@@ -27,7 +27,7 @@ plt.show()
 
 実行結果は次のように表示されるでしょう。
 
-<img src="img/matplot.png" width="400px">
+<img src="img/matplot_01.png" width="400px">
 
 ここではデータとしてNumpy配列 x、y を作成しています。次にplt.plotメソッドを呼び出して折れ線グラフを作成しています。
 最後にplt.showメソッドを呼び出すとウィンドウが表示されます。
