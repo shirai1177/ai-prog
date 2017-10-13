@@ -1,4 +1,4 @@
-## Python入門ハンズオン
+# Python入門ハンズオン
 
 それでは実際にPythonプログラムの概要を見てみましょう。
 
@@ -193,33 +193,26 @@ Object => tiger
 Pythonはオブジェクト指向言語です。クラスを定義するには次のように実装します。
 
 ```python
-class Car:
-    def __init__(self, name, gas):
+class Dnp:
+    def __init__(self, name="Tom", age=30):
         self.name = name
-        self.gas = gas
-    def move(self):
-        if self.gas > 0:
-            self.gas = self.gas - 1
-            print("{} {}: move".format(self.gas,self.name))
-        else:
-            print("{} {}: stop".format(self.gas,self.name))
+        self.age = age
+    def salary(self):
+        print("{}: {}".format(self.name, self.age * 10000))
+        
+d = Dnp("Tiger", 35)
+d.salary()
 
-car1 = Car('kbox', 3)
-
-for i in range(5):
-    car1.move()
+Dnp().salary() # デフォルト値で呼び出し
 ```
 
 実行結果は次のように表示されるでしょう。
 
 ```
-2 kbox: move
-1 kbox: move
-0 kbox: move
-0 kbox: stop
-0 kbox: stop
+Tiger: 350000
+Tom: 300000
 ```
 
 クラスの中でインスタンス自身を参照するにはselfキーワードを使います。またクラスに定義したメソッドの第1引数にはselfを指定する必要があります。また、クラスにコンストラクタを定義する場合は \_\_init\_\_メソッドを実装します。
 
-> クラスからインスタンスを生成するときにnewキーワードは不要です。
+> クラスのインスタンスを生成するときにnewキーワードは不要です。
