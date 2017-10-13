@@ -60,7 +60,7 @@ plt.show()
 <div style="page-break-before:always"></div>
 
 
-### （参考）グラフのカスタマイズ
+### グラフのカスタマイズ
 
 グラフには凡例（legend）を付けたり、x軸（y軸）に説明を付けたり、様々なカスタマイズが可能です。
 
