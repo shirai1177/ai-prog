@@ -62,29 +62,30 @@ plt.show()
 
 #### （参考）グラフのカスタマイズ
 
-グラフには凡例（legend）を付けたり、x軸（y軸）に説明に説明を付けたり、様々なカスタマイズができるようになっています。先ほどの散布図の表示をカスタマイズしてみましょう。
+グラフには凡例（legend）を付けたり、x軸（y軸）に説明に説明を付けたり、様々なカスタマイズができるようになっています。
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 
-x = np.random.rand(10)
-y = np.random.rand(10)
+x = np.arange(0, 6, 0.1)
+y1 = np.sin(x)
+y2 = np.cos(x)
 
-plt.xlim(-1, 2)
-plt.ylim(-1, 2)
-
-plt.xlabel("my x axis")
-plt.ylabel("my y axis")
-
-plt.scatter(x, y, s=100, label="my data", marker='x', color="green")
-plt.legend()
+plt.xlim(-0.5, 7) # グラフの表示範囲
+plt.plot(x, y1, label="sin")
+plt.plot(x, y2, label="cos", linestyle="--")
+plt.scatter(x + 0.5, y2, s=10, label="dot", marker='x', color="green")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.title("sin & cos")
+plt.legend() # データの凡例ラベル表示
 plt.show()
 ```
 
 実行結果は次のように表示されるでしょう。
 
-<img src="img/01_12.png" width="400px">
+<img src="img/matplot_03.png" width="400px">
 
 プログラムの詳細を見てみましょう。
 
