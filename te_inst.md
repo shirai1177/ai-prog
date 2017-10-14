@@ -70,7 +70,9 @@ pip install keras
 
 GitBucketをあらかじめ入手する。  
 gitbucket.war
-java8をインストールし、GitBucketを起動する
+
+
+## java8をインストールし、GitBucketを起動する
 
 ```
 yum search openjdk
