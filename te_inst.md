@@ -65,3 +65,16 @@ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorf
 pip install --ignore-installed --upgrade $TF_BINARY_URL
 pip install keras
 ```
+
+# GitBucket のインストールと起動
+
+GitBucketをあらかじめ入手する。  
+gitbucket.war
+java8をインストールし、GitBucketを起動する
+
+```
+yum search openjdk
+sudo yum install java-1.8.0-openjdk.x86_64
+
+java -jar gitbucket.war
+```
