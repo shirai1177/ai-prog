@@ -1,10 +1,16 @@
 # Python インストール
 
-OSはCentOS7。GCPのmicroインスタンスの場合、SWAPを有効にする
+* OS: CentOS7
+* Cloud: GCPの場合f1.micro、AWSの場合t2.micro
+* Linuxユーザ: admin
+
+## Pythonインストール
+
+GCP,AWSともにmicroインスタンスの場合、SWAPを有効にする
 
 ```
 sudo su -
-dd if=/dev/zero of=/swapfile bs=1M count=1024
+dd if=/dev/zero of=/swapfile bs=1M count=2048
 chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
@@ -22,7 +28,7 @@ SELINUX=disabled
 reboot
 ```
 
-## Anaconda3 (5.x.x) の入手とインストール
+### Anaconda3 (5.x.x) の入手とインストール
 
 https://www.anaconda.com/download/ から対応プラットフォーム版を入手する。
 
@@ -31,7 +37,7 @@ sudo yum -y install bzip2
 bash Anaconda3-5.0.0.1-Linux-x86_64.sh
 ```
 
-## jupyter notebook の設定
+### jupyter notebook の設定
 
 作業用フォルダを aihome とする場合。<br>
 httpsで起動するため、opensslで鍵の生成と登録を行う。<br>
@@ -51,7 +57,7 @@ c.NotebookApp.keyfile = '/home/admin/.jupyter/mykey.key'
 c.NotebookApp.port = 443
 ```
 
-## jupyter notebook の起動
+### jupyter notebook の起動
 ```
 cd ~/.jupyter
 sudo /home/admin/anaconda3/bin/jupyter notebook --allow-root
