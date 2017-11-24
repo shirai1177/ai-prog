@@ -1,12 +1,13 @@
-# Python インストール
+# AIプログラミング環境構築メモ
 
+次を前提として構築  
 * OS: CentOS7
-* Cloud: GCPの場合f1.micro、AWSの場合t2.micro
-* Linuxユーザ: admin
+* Cloud: GCP f1.micro または AWS t2.micro
+* linuxユーザ: admin
 
-## Pythonインストール
+## Python インストール
 
-GCP,AWSともにmicroインスタンスの場合、SWAPを有効にする
+GCP,AWSともにmicroインスタンスの場合、SWAPを有効にしないと厳しい
 
 ```
 sudo su -
@@ -30,7 +31,7 @@ reboot
 
 ### Anaconda3 (5.x.x) の入手とインストール
 
-https://www.anaconda.com/download/ から対応プラットフォーム版を入手する。
+https://www.anaconda.com/download/ から対応プラットフォーム版を入手しインストールする。
 
 ```
 sudo yum -y install bzip2
@@ -39,7 +40,13 @@ bash Anaconda3-5.0.0.1-Linux-x86_64.sh
 
 ### jupyter notebook の設定
 
-作業用フォルダを aihome とする場合。<br>
+> Diins環境ではデフォルトの8888ポートでは動作しなかった。これはWebSocketがプロキシを
+通過できないからと思われる。そこでhttps（443）を使って通信するように設定した。
+443ポートを使うためjupyter notebookはrootで起動する。
+
+jupyter notebookの起動設定と起動はrootでの作業。<br>
+あらかじめjupyter notebookにはパスを通す。<br>
+作業用フォルダは ~/aihome とした。<br>
 httpsで起動するため、opensslで鍵の生成と登録を行う。<br>
 
 ```
@@ -49,19 +56,43 @@ cd .jupyter
 openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mykey.key -out mycert.pem
 vi jupyter_notebook_config.py
 c.NotebookApp.ip = '*'
-c.NotebookApp.notebook_dir = '/home/admin/aihome'
+c.NotebookApp.notebook_dir = '/root/aihome'
 c.NotebookApp.open_browser = False
-c.NotebookApp.token = 'Study123'
-c.NotebookApp.certfile = '/home/admin/.jupyter/mycert.pem'
-c.NotebookApp.keyfile = '/home/admin/.jupyter/mykey.key'
+c.NotebookApp.token = 'StudyAI123'
+c.NotebookApp.certfile = '/root/.jupyter/mycert.pem'
+c.NotebookApp.keyfile = '/root/.jupyter/mykey.key'
 c.NotebookApp.port = 443
 ```
 
 ### jupyter notebook の起動
+
+SSLの標準ポート（443）を使う場合、rootで起動する必要がある。
+
 ```
-cd ~/.jupyter
-sudo /home/admin/anaconda3/bin/jupyter notebook --allow-root
+/home/admin/anaconda3/bin/jupyter notebook --allow-root > /root/jupyter.log 2>&1 &
 ```
+
+> rootで起動しているため、pythonのシェル実行コマンドでシステムファイルを
+消されてしまう危険がある。だから普通はやらない。
+
+### サービスへの登録
+
+ファイル jupyter.service を作成し、サービスへ登録し自動起動の設定を行う。
+
+```
+[Unit]
+Description=Jupyter notebook
+After=network.target
+[Service]
+Type=forking
+User=root
+ExecStart=/root/start_jupyter.sh
+[Install]
+WantedBy=multi-user.target
+```
+
+> 自動起動の設定をする前に、jupyter notebookの起動コマンドを、start_jupyter.shとして保存
+
 
 ## TensorFlow と Keras のインストール
 
@@ -72,13 +103,15 @@ pip install --ignore-installed --upgrade $TF_BINARY_URL
 pip install keras
 ```
 
-# GitBucket のインストールと起動
+## GitBucket のインストールと起動
 
-GitBucketをあらかじめ入手する。  
-gitbucket.war
+GitBucket（gitbucket.war）を入手する。
 
+```
+wget https://github.com/gitbucket/gitbucket/releases/download/4.18.0/gitbucket.war
+```
 
-## java8をインストールし、GitBucketを起動する
+### java8をインストールし、GitBucketを起動する
 
 ```
 yum search openjdk
@@ -86,3 +119,5 @@ sudo yum install java-1.8.0-openjdk.x86_64
 
 java -jar gitbucket.war
 ```
+ポート番号はデフォルトで8080。<br>
+変更したい場合は`--port=9090`などとオプションで指定する。
