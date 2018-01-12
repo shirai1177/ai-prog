@@ -105,6 +105,8 @@ pip install keras
 
 ## GitBucket のインストールと起動
 
+> ドキュメント管理にGitHubを使いたかったが、プライベートリポジトリの作成は有料であるためGitHubクローンを使用
+
 GitBucket（gitbucket.war）を入手する。
 
 ```
