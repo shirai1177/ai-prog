@@ -96,7 +96,8 @@ WantedBy=multi-user.target
 
 ## TensorFlow と Keras のインストール
 
-TensorFlowのモジュール名は、その時のバージョンにより適宜変更する。
+TensorFlowのモジュール名は、その時のバージョンにより適宜変更する。<br>
+このとき使ったkerasのバージョンは 2.0.8
 ```
 export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.0.1-cp36-cp36m-linux_x86_64.whl
 pip install --ignore-installed --upgrade $TF_BINARY_URL
