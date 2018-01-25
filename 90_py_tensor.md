@@ -107,7 +107,7 @@ pip install keras
 > 簡単にインストールする場合は<br>
 > pip install tensorflow==1.3.0<br>
 > pip install keras<br>
-> テンソルフローを最新（1.4.0系）でインストールしないのは、Python3.6に未対応であるため
+> テンソルフローを最新（1.4.0系）でインストールしないのは、現時点2018/1/25でPython3.6に未対応であるため
 
 ## GitBucket のインストールと起動
 
