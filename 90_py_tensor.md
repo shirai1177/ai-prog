@@ -104,6 +104,11 @@ pip install --ignore-installed --upgrade $TF_BINARY_URL
 pip install keras
 ```
 
+> 簡単にインストールする場合は
+> pip install tensorflow==1.3.0
+> pip install keras
+> テンソルフローを最新（1.4.0系）でインストールしないのは、Python3.6に未対応であるため
+
 ## GitBucket のインストールと起動
 
 > ドキュメント管理にGitHubを使いたかったが、プライベートリポジトリの作成は有料であるためGitHubクローンを使用
