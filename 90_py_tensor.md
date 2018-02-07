@@ -132,6 +132,8 @@ java -jar gitbucket.war
 
 ### GitBucketのサービス登録
 
+ファイル gitbucket.service を作成し、サービスへ登録し自動起動の設定を行う。
+
 ```
 [Unit]
 Description=Gitbucket
