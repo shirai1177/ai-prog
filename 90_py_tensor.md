@@ -129,3 +129,20 @@ java -jar gitbucket.war
 ```
 ポート番号はデフォルトで8080。<br>
 変更したい場合は`--port=9090`などとオプションで指定する。
+
+### GitBucketのサービス登録
+
+```
+[Unit]
+Description=Gitbucket
+After=network.target
+
+[Service]
+Type=forking
+User=admin
+Group=admin
+ExecStart=/home/admin/gitbucket/start_gitbucket.sh
+
+[Install]
+WantedBy=multi-user.target
+```
