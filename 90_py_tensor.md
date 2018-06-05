@@ -5,6 +5,20 @@
 * Cloud: GCP f1.micro または AWS t2.micro
 * linuxユーザ: admin
 
+## 開発者用のサーバ
+
+スナップショットによりバックアップを取る場合の権限
+
+Compute Engine に、「読み取り / 書き込み」を追加
+
+### スナップショットの取得コマンド
+
+$ gcloud compute disks snapshot ai-edu --zone=us-east1-b --snapshot-names=ai-edu-base
+ディスク名：ai-edu
+ゾーン：us-east1-b
+スナップショット名：ai-edu-base
+
+
 ## Python インストール
 
 GCP,AWSともにmicroインスタンスの場合、SWAPを有効にしないと厳しい
