@@ -7,17 +7,37 @@
 
 ## 開発者用サーバの場合の権限
 
-スナップショットによりバックアップを取ることを想定し、以下の設定を行なう。
+cronで自動的にスナップショットバックアップを取得することを想定し、以下の設定を行なう。
 Compute Engine に、「読み取り / 書き込み」を追加
 
 ### スナップショットの取得コマンド
 
-$ gcloud compute disks snapshot ai-edu --zone=us-east1-b --snapshot-names=ai-edu-base
+$ gcloud compute disks snapshot ai-edu2 --zone=us-east1-b --snapshot-names=ai-edu-base
 
-ディスク名：ai-edu<br>
+ディスク名：ai-edu2<br>
 ゾーン：us-east1-b<br>
 スナップショット名：ai-edu-base<br>
 
+base_create.sh
+
+```
+#!/bin/bash
+#
+# gcloud config set compute/zone
+#
+gcloud compute snapshots delete ai-edu-snap2 -q
+gcloud compute snapshots delete ai-edu-base -q
+gcloud compute disks snapshot ai-edu2 --zone=us-east1-b --snapshot-names=ai-edu-base
+```
+
+snap_create.sh
+
+```
+#!/bin/bash
+#
+gcloud compute snapshots delete ai-edu-snap2 -q
+gcloud compute disks snapshot ai-edu2 --zone=us-east1-b --snapshot-names=ai-edu-snap2
+```
 
 ## Python インストール
 
