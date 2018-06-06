@@ -14,9 +14,11 @@ Compute Engine に、「読み取り / 書き込み」を追加
 
 $ gcloud compute disks snapshot ai-edu2 --zone=us-east1-b --snapshot-names=ai-edu-base
 
-ディスク名：ai-edu2<br>
-ゾーン：us-east1-b<br>
-スナップショット名：ai-edu-base<br>
+* ディスク名：ai-edu2<br>
+* ゾーン：us-east1-b<br>
+* スナップショット名：ai-edu-base<br>
+
+次のスクリプトをcronから起動する。
 
 base_create.sh
 
