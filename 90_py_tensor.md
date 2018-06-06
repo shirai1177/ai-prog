@@ -39,6 +39,15 @@ gcloud compute snapshots delete ai-edu-snap2 -q
 gcloud compute disks snapshot ai-edu2 --zone=us-east1-b --snapshot-names=ai-edu-snap2
 ```
 
+## その他メモ
+
+### 他のユーザにプロジェクトのイメージを見せるための設定
+
+GCPコンソールから対象のプロジェクトを選んで、「IAM」-「メンバー追加」<br>
+権限として以下を選択<br>
+プロジェクト - 参照者<br>
+Computeエンジン - Computeイメージユーザー
+
 ## Python インストール
 
 GCP,AWSともにmicroインスタンスの場合、SWAPを有効にしないと厳しい
