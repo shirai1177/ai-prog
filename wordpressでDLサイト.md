@@ -21,3 +21,5 @@ location ~ ^/wordpress/.*\.php {
   include fastcgi_params;
  }
  ```
+
+php-fpm と nginx を再起動
