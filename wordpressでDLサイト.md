@@ -6,7 +6,7 @@ nginx + wordpress のケース
 
 /etc/php.ini に以下を設定
 ```
-post_max_size = 40M
+post_max_size = 30M
 upload_max_filesize = 30M
 max_execution_time = 300
 ```
