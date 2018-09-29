@@ -162,6 +162,8 @@ GitBucket（gitbucket.war）を入手する。
 
 ```
 wget https://github.com/gitbucket/gitbucket/releases/download/4.18.0/gitbucket.war
+2018/09/30時点の最新は以下（一応動作確認済）
+wget https://github.com/gitbucket/gitbucket/releases/download/4.29.0/gitbucket.war
 ```
 
 ### java8をインストールし、GitBucketを起動する
