@@ -61,8 +61,7 @@ chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
 free -m
-vi /etc/fstab
-/swapfile                                 swap                    swap    defaults        0 0
+echo "/swapfile                                 swap                    swap    defaults        0 0" >> /etc/fstab
 ```
 
 SE-Linuxを無効化
