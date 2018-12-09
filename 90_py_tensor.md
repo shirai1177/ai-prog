@@ -61,6 +61,7 @@ chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
 free -m
+cp -P /etc/fstab /etc/fstab.org
 echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
 ```
 
