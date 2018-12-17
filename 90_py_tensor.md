@@ -65,6 +65,12 @@ cp -P /etc/fstab /etc/fstab.org
 echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
 ```
 
+システムのタイムゾーンを東京に設定
+
+```
+timedatectl set-timezone Asia/Tokyo
+```
+
 SE-Linuxを無効化
 
 ```
