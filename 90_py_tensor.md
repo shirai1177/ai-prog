@@ -113,6 +113,8 @@ c.NotebookApp.token = 'StudyAI123'
 c.NotebookApp.certfile = '/root/.jupyter/mycert.pem'
 c.NotebookApp.keyfile = '/root/.jupyter/mykey.key'
 c.NotebookApp.port = 443
+c.NotebookApp.allow_remote_access = True
+c.NotebookApp.allow_root = True
 ```
 
 ### jupyter notebook の起動
