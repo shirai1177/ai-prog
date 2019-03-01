@@ -115,6 +115,7 @@ c.NotebookApp.keyfile = '/root/.jupyter/mykey.key'
 c.NotebookApp.port = 443
 c.NotebookApp.allow_remote_access = True
 c.NotebookApp.allow_root = True
+c.NotebookApp.terminals_enabled = False
 ```
 
 ### jupyter notebook の起動
@@ -127,6 +128,7 @@ SSLの標準ポート（443）を使う場合、rootで起動する必要があ�
 
 > rootで起動しているため、pythonのシェル実行コマンドでシステムファイルを
 消されてしまう危険がある。だから普通はやらない。
+> 起動設定ファイルで allow_rootをTrueとしたので、このオプションは不要
 
 ### サービスへの登録
 
