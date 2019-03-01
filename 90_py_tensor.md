@@ -116,6 +116,7 @@ c.NotebookApp.port = 443
 c.NotebookApp.allow_remote_access = True
 c.NotebookApp.allow_root = True
 c.NotebookApp.terminals_enabled = False
+c.NotebookApp.allow_password_change = False
 ```
 
 ### jupyter notebook の起動
