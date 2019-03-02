@@ -2,7 +2,9 @@
 
 Dockerのインストールは終わっている前提。 
 
-## tensorflow+jupyterコンテナ
+## tensorflow+jupyterの公式コンテナの利用
+
+Tensorflow公式コンテナに必要なソフトウエアをインストールする。
 
 ```
 [host]$ docker run -it -p 443:443 tensorflow/tensorflow:nightly-py3-jupyter
@@ -27,4 +29,6 @@ c.NotebookApp.allow_root = True
 c.NotebookApp.terminals_enabled = False
 c.NotebookApp.allow_password_change = False
 ```
+
+コンテナから抜けた後、 docker container commitでイメージを作る。
 
