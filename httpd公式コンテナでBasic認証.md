@@ -23,3 +23,9 @@ httpd.conf を変更し、.htaccessを有効にする
 # mv httpd.conf httpd.conf.org
 # mv aaa httpd.conf
 ```
+
+コンテナを再起動する
+
+```
+# docker-compose restart
+```
