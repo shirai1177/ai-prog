@@ -37,6 +37,8 @@ mv /etc/selinux/config /etc/selinux/config.org
 sed 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config.org > /etc/selinux/config
 ```
 
+SE-Linuxの設定反映のため、仮想マシンをリブートする。
+
 ## 受講者ディレクトリの作成
 
 jupyter notebookのホームに、受講者毎のディレクトリを作成する。
