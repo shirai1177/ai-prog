@@ -30,7 +30,7 @@ systemctl enable docker
 usermod -aG docker cloudedu_teacher
 usermod -aG docker admin
 
-docker run -d -e TZ=Asia/Tokyo -name aiedu -p 443:443 metroedu/tensor-edu
+docker run -d -e TZ=Asia/Tokyo --name aiedu -p 443:443 metroedu/tensor-edu
 docker run -d -e TZ=Asia/Tokyo -p 8080:8080 metroedu/ai-doc
 ```
 
