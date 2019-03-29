@@ -32,6 +32,9 @@ usermod -aG docker admin
 
 docker run -d -e TZ=Asia/Tokyo --name aiedu -p 443:443 metroedu/tensor-edu
 docker run -d -e TZ=Asia/Tokyo -p 8080:8080 metroedu/ai-doc
+
+mv /etc/selinux/config /etc/selinux/config.org
+sed 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config.org > /etc/selinux/config
 ```
 
 ## 受講者ディレクトリの作成
@@ -42,10 +45,11 @@ jupyter notebookのホームに、受講者毎のディレクトリを作成す�
 docker exec -it aiedu bash
 cd
 vi make_study.sh
+　：
 ./make_study.sh
 ```
 
 ## CNNモデルの作成
 
-画像認識の演習用にCNNの学習モデルを作成する。
+画像認識の演習用に、CNNの学習モデルを作成する。
 
