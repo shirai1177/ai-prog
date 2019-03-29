@@ -39,10 +39,13 @@ docker run -d -e TZ=Asia/Tokyo -p 8080:8080 metroedu/ai-doc
 jupyter notebookのホームに、受講者毎のディレクトリを作成する。
 
 ```
-docker exec -it -name aiedu bash
+docker exec -it aiedu bash
 cd
 vi make_study.sh
 ./make_study.sh
 ```
 
+## CNNモデルの作成
+
+画像認識の演習用にCNNの学習モデルを作成する。
 
