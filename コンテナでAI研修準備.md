@@ -31,7 +31,7 @@ usermod -aG docker cloudedu_teacher
 usermod -aG docker admin
 
 docker run -d -e TZ=Asia/Tokyo --name aiedu -p 443:443 metroedu/tensor-edu
-docker run -d -e TZ=Asia/Tokyo -p 8080:8080 metroedu/ai-doc
+docker run -d -e TZ=Asia/Tokyo --name aidoc -p 8080:8080 metroedu/ai-doc
 
 mv /etc/selinux/config /etc/selinux/config.org
 sed 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config.org > /etc/selinux/config
