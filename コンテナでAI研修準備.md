@@ -35,6 +35,9 @@ docker run -d -e TZ=Asia/Tokyo -p 8080:8080 metroedu/ai-doc
 
 mv /etc/selinux/config /etc/selinux/config.org
 sed 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config.org > /etc/selinux/config
+
+echo "0 18 * * * /sbin/shutdown -h now" >> /var/spool/cron/root
+chmod 600 /var/spool/cron/root
 ```
 
 SE-Linuxの設定反映のため、仮想マシンをリブートする。
