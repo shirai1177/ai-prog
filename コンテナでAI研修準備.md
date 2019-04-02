@@ -54,6 +54,18 @@ vi make_study.sh
 ./make_study.sh
 ```
 
+## SE-Linuxの設定反映のため、マシン再起動
+
+SE-Linuxの設定反映（Disabled）のため、仮想マシンを再起動する。
+コンテナは手動で停止する。
+
+```
+docker stop aiedu aidoc
+shutdown -h now
+```
+
+このときCNNモデル作成のためCPU数を増やすスケールアップをしてもよい。
+
 ## CNNモデルの作成
 
 画像認識の演習用に、CNNの学習モデルを作成する。
