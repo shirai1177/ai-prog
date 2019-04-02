@@ -40,6 +40,8 @@ echo "0 18 * * * /sbin/shutdown -h now" >> /var/spool/cron/root
 chmod 600 /var/spool/cron/root
 ```
 
+※一度起動した後は、GCEのメタデータからstartup-scriptの項目を削除する。（再起動のたびに実行されないように）
+
 ## 受講者ディレクトリの作成
 
 jupyter notebookのホームに、受講者毎のディレクトリを作成する。
