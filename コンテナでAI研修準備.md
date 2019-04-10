@@ -22,7 +22,8 @@ cp -P /etc/fstab /etc/fstab.org
 echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
 timedatectl set-timezone Asia/Tokyo
 
-yum install -y yum-utils device-mapper-persistent-data lvm2
+# yum install -y yum-utils device-mapper-persistent-data lvm2
+yum install -y yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum install -y docker-ce-18.09.0-3.el7
 systemctl start docker
