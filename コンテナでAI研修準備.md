@@ -25,7 +25,7 @@ timedatectl set-timezone Asia/Tokyo
 # yum install -y yum-utils device-mapper-persistent-data lvm2
 yum install -y yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum install -y docker-ce-18.09.0-3.el7
+yum install -y docker-ce-18.09.4-3.el7 docker-ce-cli-18.09.4-3.el7 containerd.io
 systemctl start docker
 systemctl enable docker
 usermod -aG docker cloudedu_teacher
