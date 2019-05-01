@@ -46,7 +46,7 @@ chmod 600 /var/spool/cron/root
 tensorflow + jupyter のコンテナをデフォルトポートで起動する
 
 ```
-tensorflow/tensorflow:latest-py3-jupyter
+docker run -d -p 8888:8888 tensorflow/tensorflow:latest-py3-jupyter
 ```
 
 ## 受講者ディレクトリの作成
