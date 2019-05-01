@@ -43,6 +43,12 @@ chmod 600 /var/spool/cron/root
 
 ※GCPの設定では、一度起動した後はGCEのメタデータからstartup-scriptの項目を削除する。（再起動のたびに実行されないように）
 
+tensorflow + jupyter のコンテナをデフォルトポートで起動する
+
+```
+tensorflow/tensorflow:latest-py3-jupyter
+```
+
 ## 受講者ディレクトリの作成
 
 jupyter notebookのホームに、受講者毎のディレクトリを作成する。
