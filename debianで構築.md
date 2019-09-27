@@ -110,7 +110,7 @@ c.InteractiveShellApp.exec_lines = ['%matplotlib inline']
 消されてしまう危険がある。だから普通はやらない。
 
 
-### サービスへの登録
+### jupyter notebookのサービスへの登録
 
 ファイル jupyter.service を作成し、サービスへ登録し自動起動の設定を行う。
 
@@ -126,13 +126,24 @@ ExecStart=/root/start_jupyter.sh
 WantedBy=multi-user.target
 ```
 
-> 自動起動の設定をする前に、jupyter notebookの起動コマンドを、start_jupyter.shとして保存。実行権も与える
+自動起動の設定をする前に、jupyter notebookの起動コマンドを、start_jupyter.shとして保存。実行権も与える
+
+```
+vi start_jupyter.sh
+/home/admin/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
+
+chmod 755 start_jupyter.sh
+```
+
+サービスへの登録と起動・自動起動設定
 
 ```
 cp jupyter.service /etc/systemd/system
 chown root:root /etc/systemd/system/jupyter.service
 systemctl daemon-reload
 systemctl status jupyter.service
+systemctl enable jupyter
+systemctl start jupyter
 ```
 
 ## GitBucket のインストールと起動
@@ -172,4 +183,15 @@ ExecStart=/home/admin/gitbucket/start_gitbucket.sh
 
 [Install]
 WantedBy=multi-user.target
+```
+
+サービスへの登録と起動・自動起動設定
+
+```
+cp gitbucket.service /etc/systemd/system
+chown root:root /etc/systemd/system/gitbucket.service
+systemctl daemon-reload
+systemctl status gitbucket.service
+systemctl enable gitbucket
+systemctl start gitbucket
 ```
