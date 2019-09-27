@@ -1,61 +1,20 @@
 # AIプログラミング環境構築メモ
 
 次を前提として構築  
-* OS: CentOS7
-* Cloud: GCP f1.micro または AWS t2.micro
+* OS: debian9
+* Cloud: GCP n1-standard-1
 * linuxユーザ: admin
-
-## 開発者用サーバの場合の権限
-
-cronで自動的にスナップショットバックアップを取得することを想定し、以下の設定を行なう。
-Compute Engine に、「読み取り / 書き込み」を追加
-
-### スナップショットの取得コマンド
-
-$ gcloud compute disks snapshot ai-edu2 --zone=us-east1-b --snapshot-names=ai-edu-base
-
-* ディスク名：ai-edu2<br>
-* ゾーン：us-east1-b<br>
-* スナップショット名：ai-edu-base<br>
-
-次のスクリプトをcronから起動する。
-
-base_create.sh
-
-```
-#!/bin/bash
-#
-# gcloud config set compute/zone
-#
-gcloud compute snapshots delete ai-edu-snap2 -q
-gcloud compute snapshots delete ai-edu-base -q
-gcloud compute disks snapshot ai-edu2 --zone=us-east1-b --snapshot-names=ai-edu-base
-```
-
-snap_create.sh
-
-```
-#!/bin/bash
-#
-gcloud compute snapshots delete ai-edu-snap2 -q
-gcloud compute disks snapshot ai-edu2 --zone=us-east1-b --snapshot-names=ai-edu-snap2
-```
-
-## その他メモ
-
-### 他のユーザにプロジェクトのイメージを見せるための設定
-
-GCPコンソールから対象のプロジェクトを選んで、「IAM」-「メンバー追加」<br>
-権限として以下を選択<br>
-プロジェクト - 参照者<br>
-Computeエンジン - Computeイメージユーザー
 
 ## Python インストール
 
-GCP,AWSともにmicroインスタンスの場合、SWAPを有効にしないと厳しい
+### 必要なパッケージのインストールとSWAPの有効化
 
 ```
 sudo su -
+apt-get update
+apt-get install libpam-systemd dbus
+apt-get install bzip2
+
 dd if=/dev/zero of=/swapfile bs=1M count=2048
 chmod 600 /swapfile
 mkswap /swapfile
@@ -68,24 +27,26 @@ echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
 システムのタイムゾーンを東京に設定
 
 ```
-timedatectl set-timezone Asia/Tokyo
+rm /etc/localtime 
+echo Asia/Tokyo > /etc/timezone 
+dpkg-reconfigure -f noninteractive tzdata
 ```
 
-SE-Linuxを無効化
+SE-Linuxの無効化の確認
 
 ```
-vi /etc/selinux/config
-SELINUX=disabled
-
-reboot
+id -Z
+"--context (-Z) は SELinux が有効なカーネルのみ動作します"と出れば、 SELINUX が無効の状態
 ```
+
+ここでいったん再起動する。
 
 ### Anaconda3 (5.x.x) の入手とインストール
 
 https://www.anaconda.com/download/ から対応プラットフォーム版を入手しインストールする。
 
 ```
-sudo yum -y install bzip2
+wget https://www.anaconda.com/......
 bash Anaconda3-5.0.0.1-Linux-x86_64.sh
 ```
 
@@ -119,17 +80,37 @@ c.NotebookApp.terminals_enabled = False
 c.NotebookApp.allow_password_change = False
 ```
 
+### TensorFlow と Keras のインストール
+
+TensorFlowのモジュール名は、その時のバージョンにより適宜変更する。<br>
+
+```
+pip install tensorflow
+pip install keras
+```
+
+> バージョンを指定してインストールする場合は<br>
+> pip install tensorflow==1.3.0<br>
+
+### %matplotlib inline の指定を定義
+
+'''
+ipython profile create
+~/.ipython/profile_default/ipython_config.py を編集
+c.InteractiveShellApp.exec_lines = ['%matplotlib inline']
+'''
+
 ### jupyter notebook の起動
 
 SSLの標準ポート（443）を使う場合、rootで起動する必要がある。
 
 ```
-/home/admin/anaconda3/bin/jupyter notebook --allow-root > /root/jupyter.log 2>&1 &
+/home/admin/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
 ```
 
 > rootで起動しているため、pythonのシェル実行コマンドでシステムファイルを
 消されてしまう危険がある。だから普通はやらない。
-> 起動設定ファイルで allow_rootをTrueとしたので、このオプションは不要
+
 
 ### サービスへの登録
 
@@ -147,27 +128,16 @@ ExecStart=/root/start_jupyter.sh
 WantedBy=multi-user.target
 ```
 
-> 自動起動の設定をする前に、jupyter notebookの起動コマンドを、start_jupyter.shとして保存
+> 自動起動の設定をする前に、jupyter notebookの起動コマンドを、start_jupyter.shとして保存。実行権も与える
 
-
-## TensorFlow と Keras のインストール
-
-TensorFlowのモジュール名は、その時のバージョンにより適宜変更する。<br>
-このとき使ったkerasのバージョンは 2.0.8
 ```
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.0.1-cp36-cp36m-linux_x86_64.whl
-pip install --ignore-installed --upgrade $TF_BINARY_URL
-pip install keras
+cp jupyter.service /etc/systemd/system
+chown root:root /etc/systemd/system/jupyter.service
+systemctl daemon-reload
+systemctl status jupyter.service
 ```
-
-> 簡単にインストールする場合は<br>
-> pip install tensorflow==1.3.0<br>
-> pip install keras<br>
-> テンソルフローを最新（1.4.0系）でインストールしないのは、現時点2018/1/25でPython3.6に未対応であるため
 
 ## GitBucket のインストールと起動
-
-> ドキュメント管理にGitHubを使いたかったが、プライベートリポジトリの作成は有料であるためGitHubクローンを使用
 
 GitBucket（gitbucket.war）を入手する。
 
@@ -180,8 +150,7 @@ wget https://github.com/gitbucket/gitbucket/releases/download/4.29.0/gitbucket.w
 ### java8をインストールし、GitBucketを起動する
 
 ```
-yum search openjdk
-sudo yum install java-1.8.0-openjdk.x86_64
+apt-get install default-jre
 
 java -jar gitbucket.war
 ```
