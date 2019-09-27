@@ -94,15 +94,13 @@ pip install keras
 
 ### %matplotlib inline の指定を定義
 
-'''
+```
 ipython profile create
 ~/.ipython/profile_default/ipython_config.py を編集
 c.InteractiveShellApp.exec_lines = ['%matplotlib inline']
-'''
+```
 
 ### jupyter notebook の起動
-
-SSLの標準ポート（443）を使う場合、rootで起動する必要がある。
 
 ```
 /home/admin/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
