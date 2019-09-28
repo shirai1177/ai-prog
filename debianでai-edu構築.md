@@ -158,8 +158,6 @@ GitBucket（gitbucket.war）を入手する。
 ```
 mkdir gitbucket
 cd gitbucket
-wget https://github.com/gitbucket/gitbucket/releases/download/4.18.0/gitbucket.war
-2018/09/30時点の最新は以下（一応動作確認済）
 wget https://github.com/gitbucket/gitbucket/releases/download/4.29.0/gitbucket.war
 ```
 
@@ -173,6 +171,17 @@ java -jar gitbucket.war
 
 ポート番号はデフォルトで8080。<br>
 変更したい場合は`--port=9090`などとオプションで指定する。
+
+### 起動ファイルの作成
+
+```
+vi start_gitbucket.sh
+
+#!/bin/bash
+java -jar /home/admin/gitbucket/gitbucket.war > /home/admin/gitbucket/git.log 2>&1 &
+
+chmod 755 start_gitbucket.sh
+```
 
 ### GitBucketのサービス登録
 
