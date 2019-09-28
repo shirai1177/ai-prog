@@ -86,6 +86,7 @@ jupyter notebookの起動設定と起動はrootでの作業。<br>
 httpsで起動するため、opensslで鍵の生成と登録を行う。<br>
 
 ```
+
 mkdir aihome
 jupyter notebook --generate-config
 cd .jupyter
