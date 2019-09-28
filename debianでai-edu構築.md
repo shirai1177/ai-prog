@@ -7,6 +7,16 @@
 
 ## OSの基本設定とPythonインストール
 
+### vimrcの編集
+
+```
+vi .vimrc
+
+set tabstop=4
+syntax off
+set noautoindent
+```
+
 ### 必要なパッケージのインストールとSWAPの有効化
 
 ```
