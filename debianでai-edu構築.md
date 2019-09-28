@@ -113,16 +113,6 @@ ipython profile create
 c.InteractiveShellApp.exec_lines = ['%matplotlib inline']
 ```
 
-### jupyter notebook の起動
-
-```
-/home/admin/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
-```
-
-> rootで起動しているため、pythonのシェル実行コマンドでシステムファイルを
-消されてしまう危険がある。だから普通はやらない。
-
-
 ### jupyter notebookのサービスへの登録
 
 ファイル jupyter.service を作成し、サービスへ登録し自動起動の設定を行う。
@@ -143,6 +133,8 @@ WantedBy=multi-user.target
 
 ```
 vi start_jupyter.sh
+
+#!/bin/bash
 /home/admin/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
 
 chmod 755 start_jupyter.sh
