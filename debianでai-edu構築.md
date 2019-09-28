@@ -21,9 +21,9 @@ set noautoindent
 
 ```
 sudo su -
-apt-get update
-apt-get install libpam-systemd dbus
-apt-get install bzip2
+apt-get -y update
+apt-get -y install libpam-systemd dbus
+apt-get -y install bzip2
 
 dd if=/dev/zero of=/swapfile bs=1M count=2048
 chmod 600 /swapfile
