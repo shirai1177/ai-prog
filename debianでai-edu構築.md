@@ -5,7 +5,7 @@
 * Cloud: GCP n1-standard-1
 * linuxユーザ: admin
 
-## Python インストール
+## OSの基本設定とPythonインストール
 
 ### 必要なパッケージのインストールとSWAPの有効化
 
