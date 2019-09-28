@@ -59,7 +59,7 @@ Anacondaの公式サイトから対応プラットフォーム版を入手しイ
 wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
 bash Anaconda3-2019.07-Linux-x86_64.sh
 
-パスを /home/admin/anaconda3/bin に通す
+adminとrootで、パスを /home/admin/anaconda3/bin に通す
 ```
 
 ### TensorFlow と Keras のインストール
