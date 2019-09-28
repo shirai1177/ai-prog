@@ -53,11 +53,11 @@ id -Z
 
 ### Anaconda3 (5.x.x) の入手とインストール
 
-https://www.anaconda.com/download/ から対応プラットフォーム版を入手しインストールする。
+Anacondaの公式サイトから対応プラットフォーム版を入手しインストールする。
 
 ```
-wget https://www.anaconda.com/......
-bash Anaconda3-5.0.0.1-Linux-x86_64.sh
+wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
+bash Anaconda3-2019.07-Linux-x86_64.sh
 ```
 
 ### jupyter notebook の設定
