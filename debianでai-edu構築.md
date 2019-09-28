@@ -58,7 +58,21 @@ Anacondaの公式サイトから対応プラットフォーム版を入手しイ
 ```
 wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
 bash Anaconda3-2019.07-Linux-x86_64.sh
+
+パスを /home/admin/anaconda3/bin に通す
 ```
+
+### TensorFlow と Keras のインストール
+
+TensorFlowのモジュール名は、その時のバージョンにより適宜変更する。<br>
+
+```
+pip install tensorflow
+pip install keras
+```
+
+> バージョンを指定してインストールする場合は<br>
+> pip install tensorflow==1.3.0<br>
 
 ### jupyter notebook の設定
 
@@ -89,18 +103,6 @@ c.NotebookApp.allow_root = True
 c.NotebookApp.terminals_enabled = False
 c.NotebookApp.allow_password_change = False
 ```
-
-### TensorFlow と Keras のインストール
-
-TensorFlowのモジュール名は、その時のバージョンにより適宜変更する。<br>
-
-```
-pip install tensorflow
-pip install keras
-```
-
-> バージョンを指定してインストールする場合は<br>
-> pip install tensorflow==1.3.0<br>
 
 ### %matplotlib inline の指定を定義
 
