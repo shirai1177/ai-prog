@@ -205,10 +205,10 @@ WantedBy=multi-user.target
 サービスへの登録と起動・自動起動設定
 
 ```
-cp gitbucket.service /etc/systemd/system
-chown root:root /etc/systemd/system/gitbucket.service
-systemctl daemon-reload
-systemctl status gitbucket.service
-systemctl enable gitbucket
-systemctl start gitbucket
+sudo cp gitbucket.service /etc/systemd/system
+sudo chown root:root /etc/systemd/system/gitbucket.service
+sudo systemctl daemon-reload
+sudo systemctl status gitbucket.service
+sudo systemctl enable gitbucket
+sudo systemctl start gitbucket
 ```
