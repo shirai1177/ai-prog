@@ -53,19 +53,19 @@ bash Anaconda3-5.0.0.1-Linux-x86_64.sh
 ### jupyter notebook の設定
 
 > Diins環境ではデフォルトの8888ポートでは動作しなかった。これはWebSocketがプロキシを
-通過できないからと思われる。そこでhttps（443）を使って通信するように設定した。
+通過できないからと思われる。そこでhttps（443）を使って通信するように設定。
 443ポートを使うためjupyter notebookはrootで起動する。
 
 jupyter notebookの起動設定と起動はrootでの作業。<br>
 あらかじめjupyter notebookにはパスを通す。<br>
-作業用フォルダは ~/aihome とした。<br>
+作業用フォルダは ~/aihome <br>
 httpsで起動するため、opensslで鍵の生成と登録を行う。<br>
 
 ```
 mkdir aihome
 jupyter notebook --generate-config
 cd .jupyter
-openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mykey.key -out mycert.pem
+openssl req -x509 -nodes -days 3650 -newkey rsa:1024 -keyout mykey.key -out mycert.pem
 vi jupyter_notebook_config.py
 c.NotebookApp.ip = '*'
 c.NotebookApp.notebook_dir = '/root/aihome'
