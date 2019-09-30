@@ -194,8 +194,8 @@ After=network.target
 
 [Service]
 Type=forking
-User=admin
-Group=admin
+User=gcpadmin
+Group=gcpadmin
 ExecStart=/home/gcpadmin/gitbucket/start_gitbucket.sh
 
 [Install]
