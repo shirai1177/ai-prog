@@ -1,9 +1,9 @@
-# Debianで環境構築のメモ
+# Ubuntu , Debianで環境構築のメモ
 
 次を前提として構築  
-* OS: debian9
+* OS: ubuntu18.0
 * Cloud: GCP n1-standard-1
-* linuxユーザ: admin
+* linuxユーザ: gcpadmin
 
 ## OSの基本設定とPythonインストール
 
@@ -59,7 +59,7 @@ Anacondaの公式サイトから対応プラットフォーム版を入手しイ
 wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
 bash Anaconda3-2019.07-Linux-x86_64.sh
 
-adminとrootで、パスを /home/admin/anaconda3/bin に通す
+gcpadminとrootで、パスを /home/admin/anaconda3/bin に通す
 ```
 
 ### TensorFlow と Keras のインストール
@@ -135,7 +135,7 @@ WantedBy=multi-user.target
 vi start_jupyter.sh
 
 #!/bin/bash
-/home/admin/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
+/home/gcpadmin/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
 
 chmod 755 start_jupyter.sh
 ```
@@ -158,7 +158,7 @@ GitBucket（gitbucket.war）を入手する。
 ```
 mkdir gitbucket
 cd gitbucket
-wget https://github.com/gitbucket/gitbucket/releases/download/4..0/gitbucket.war
+wget https://github.com/gitbucket/gitbucket/releases/download/4.32.0/gitbucket.war
 ```
 
 ### java8をインストールし、GitBucketを起動する
@@ -178,7 +178,7 @@ java -jar gitbucket.war
 vi start_gitbucket.sh
 
 #!/bin/bash
-java -jar /home/admin/gitbucket/gitbucket.war > /home/admin/gitbucket/git.log 2>&1 &
+java -jar /home/gcpadmin/gitbucket/gitbucket.war > /home/gcpadmin/gitbucket/git.log 2>&1 &
 
 chmod 755 start_gitbucket.sh
 ```
@@ -196,7 +196,7 @@ After=network.target
 Type=forking
 User=admin
 Group=admin
-ExecStart=/home/admin/gitbucket/start_gitbucket.sh
+ExecStart=/home/gcpadmin/gitbucket/start_gitbucket.sh
 
 [Install]
 WantedBy=multi-user.target
