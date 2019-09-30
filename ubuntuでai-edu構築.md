@@ -1,4 +1,4 @@
-# Ubuntu , Debianで環境構築のメモ
+# Ubuntu で環境構築のメモ
 
 次を前提として構築  
 * OS: ubuntu18.0
