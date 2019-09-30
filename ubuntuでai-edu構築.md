@@ -1,7 +1,7 @@
 # Ubuntu で環境構築のメモ
 
 次を前提として構築  
-* OS: ubuntu18.0
+* OS: ubuntu18.04
 * Cloud: GCP n1-standard-1
 * linuxユーザ: gcpadmin
 
