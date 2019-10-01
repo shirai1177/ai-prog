@@ -2,7 +2,7 @@
 
 次を前提として構築  
 * OS: ubuntu18.04
-* Cloud: GCP n1-standard-1
+* Cloud: GCP g1-small or n1-standard-1
 * linuxユーザ: gcpadmin
 
 ## OSの基本設定とPythonインストール
@@ -22,8 +22,9 @@ set noautoindent
 ```
 sudo su -
 apt-get -y update
-apt-get -y install libpam-systemd dbus
 apt-get -y install bzip2
+# Debian9の場合、端末が固まる問題回避のため以下もインストール
+# apt-get -y install libpam-systemd dbus
 
 dd if=/dev/zero of=/swapfile bs=1M count=2048
 chmod 600 /swapfile
