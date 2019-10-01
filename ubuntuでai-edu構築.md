@@ -43,6 +43,13 @@ echo Asia/Tokyo > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdata
 ```
 
+crontabの設定（18時にシャットダウン）
+
+```
+echo "0 18 * * * /sbin/shutdown -h now" >> /var/spool/cron/crontabs/root
+chmod 600 /var/spool/cron/crontabs/root
+```
+
 SE-Linuxの無効化の確認
 
 ```
