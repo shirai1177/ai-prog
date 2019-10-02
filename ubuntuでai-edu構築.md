@@ -223,3 +223,13 @@ sudo systemctl status gitbucket.service
 sudo systemctl enable gitbucket
 sudo systemctl start gitbucket
 ```
+
+## 研修環境の構築
+
+研修コンテンツをダウンロード
+
+```
+sudo su -
+gsutil cp gs://ai-edu-storage/edu_content.tar .
+tar xvf edu_content.tar
+```
