@@ -186,7 +186,7 @@ java -jar gitbucket.war
 vi start_gitbucket.sh
 
 #!/bin/bash
-java -jar /home/gcpadmin/gitbucket/gitbucket.war > /home/gcpadmin/gitbucket/git.log 2>&1 &
+java -jar /home/gcpadmin/gitbucket/gitbucket.war > /home/gcpadmin/gitbucket/log 2>&1 &
 
 chmod 755 start_gitbucket.sh
 ```
