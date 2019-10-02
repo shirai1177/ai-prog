@@ -247,7 +247,9 @@ gsutil cp gs://ai-edu-storage/edu_content.tar .
 tar xvf edu_content.tar
 ```
 
-研修コンテンツのアップロードスクリプト
+### 研修コンテンツのアップロードスクリプト
+
+jupyter環境
 
 ```
 vi edu_make.sh
@@ -258,6 +260,8 @@ tar cvf edu_content.tar $CONTENT_FILES
 gsutil cp edu_content.tar gs://ai-edu-storage
 rm -f edu_content.tar
 ```
+
+gitbucketリポジトリ
 
 ```
 vi repo_make.sh
