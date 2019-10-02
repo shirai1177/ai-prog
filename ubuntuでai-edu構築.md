@@ -77,6 +77,9 @@ TensorFlowのモジュール名は、その時のバージョンにより適宜�
 ```
 pip install tensorflow
 pip install keras
+
+# tensorflowバージョンの確認
+python -c "import tensorflow as tf; print(tf.__version__)"
 ```
 
 > バージョンを指定してインストールする場合は<br>
