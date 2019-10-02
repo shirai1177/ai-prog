@@ -169,7 +169,7 @@ GitBucket（gitbucket.war）を入手する。
 ```
 mkdir gitbucket
 cd gitbucket
-wget https://github.com/gitbucket/gitbucket/releases/download/4.29.0/gitbucket.war
+wget https://github.com/gitbucket/gitbucket/releases/download/4.31.1/gitbucket.war
 ```
 
 ### java8をインストールし、GitBucketを起動する
