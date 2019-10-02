@@ -247,3 +247,25 @@ gsutil cp gs://ai-edu-storage/edu_content.tar .
 tar xvf edu_content.tar
 ```
 
+研修コンテンツのアップロードスクリプト
+
+```
+vi edu_make.sh
+
+CONTENT_FILES="make_study.sh tools"
+tar cvf edu_content.tar $CONTENT_FILES
+
+gsutil cp edu_content.tar gs://ai-edu-storage
+rm -f edu_content.tar
+```
+
+```
+vi repo_make.sh
+
+sudo systemctl stop gitbucket
+sleep 5
+tar cvf gitrepo.tar .gitbucket/
+gsutil cp gitrepo.tar gs://ai-edu-storage
+rm -f gitrepo.tar
+sudo systemctl start gitbucket
+```
