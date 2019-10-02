@@ -226,10 +226,24 @@ sudo systemctl start gitbucket
 
 ## 研修環境の構築
 
-研修コンテンツをダウンロード
+### ハンズオンテキスト
+
+* gitbucketにrootでログイン
+* rootのパスワード変更
+* metroユーザ作成
+* guestユーザ作成
+* metroで再ログイン
+* AI-eduリポジトリ作成
+* guestユーザをコラボレーション設定（guest）
+* テキストコンテンツのアップロード
+
+### jupyter実行環境
+
+研修コンテンツのダウンロードと展開
 
 ```
 sudo su -
 gsutil cp gs://ai-edu-storage/edu_content.tar .
 tar xvf edu_content.tar
 ```
+
