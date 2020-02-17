@@ -86,7 +86,7 @@ https://www.anaconda.com/download/ から対応プラットフォーム版を入
 
 ```
 sudo yum -y install bzip2
-bash Anaconda3-5.0.0.1-Linux-x86_64.sh
+bash Anaconda3-2019.07-Linux-x86_64.sh -b
 ```
 
 ### jupyter notebook の設定
@@ -124,7 +124,7 @@ c.NotebookApp.allow_password_change = False
 SSLの標準ポート（443）を使う場合、rootで起動する必要がある。
 
 ```
-/home/admin/anaconda3/bin/jupyter notebook --allow-root > /root/jupyter.log 2>&1 &
+/home/admin/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
 ```
 
 > rootで起動しているため、pythonのシェル実行コマンドでシステムファイルを
@@ -153,17 +153,11 @@ WantedBy=multi-user.target
 ## TensorFlow と Keras のインストール
 
 TensorFlowのモジュール名は、その時のバージョンにより適宜変更する。<br>
-このとき使ったkerasのバージョンは 2.0.8
+
 ```
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.0.1-cp36-cp36m-linux_x86_64.whl
-pip install --ignore-installed --upgrade $TF_BINARY_URL
+pip install tensorflow==2.0.0
 pip install keras
 ```
-
-> 簡単にインストールする場合は<br>
-> pip install tensorflow==1.3.0<br>
-> pip install keras<br>
-> テンソルフローを最新（1.4.0系）でインストールしないのは、現時点2018/1/25でPython3.6に未対応であるため
 
 ## GitBucket のインストールと起動
 
