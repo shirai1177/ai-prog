@@ -204,7 +204,7 @@ After=network.target
 Type=forking
 User=admin
 Group=admin
-ExecStart=/home/admin/gitbucket/start_gitbucket.sh
+ExecStart=/home/gcpadmin/gitbucket/start_gitbucket.sh
 
 [Install]
 WantedBy=multi-user.target
