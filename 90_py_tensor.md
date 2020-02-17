@@ -185,6 +185,7 @@ sudo apt-get install openjdk-8-jre
 
 # start_gitbucket.sh へ以下を保存
 
+#!/bin/bash
 java -jar /home/gcpadmin/gitbucket/gitbucket.war > /home/gcpadmin/gitbucket/log 2>&1 &
 ```
 ポート番号はデフォルトで8080。<br>
