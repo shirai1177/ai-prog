@@ -1,9 +1,9 @@
 # AIプログラミング環境構築メモ
 
 次を前提として構築  
-* OS: CentOS7
+* OS: ubuntu16系
 * Cloud: GCP f1.micro または AWS t2.micro
-* linuxユーザ: admin
+* linuxユーザ: gcpadmin
 
 ## 開発者用サーバの場合の権限
 
@@ -85,7 +85,6 @@ reboot
 https://www.anaconda.com/download/ から対応プラットフォーム版を入手しインストールする。
 
 ```
-sudo yum -y install bzip2
 bash Anaconda3-2019.07-Linux-x86_64.sh -b
 ```
 
@@ -170,16 +169,15 @@ wget https://github.com/gitbucket/gitbucket/releases/download/4.18.0/gitbucket.w
 2018/09/30時点の最新は以下（一応動作確認済）
 wget https://github.com/gitbucket/gitbucket/releases/download/4.29.0/gitbucket.war
 今使っている最新はこちら
-wget https://github.com/gitbucket/gitbucket/releases/download/4.31.1/gitbucket.war
+wget https://github.com/gitbucket/gitbucket/releases/download/4.31.2/gitbucket.war
 ```
 
 ### java8をインストールし、GitBucketを起動する
 
 ```
-yum search openjdk
-sudo yum install java-1.8.0-openjdk.x86_64
+sudo apt-get install openjdk-8-jre
 
-java -jar gitbucket.war
+java -jar gitbucket.war > log 2>&1 &
 ```
 ポート番号はデフォルトで8080。<br>
 変更したい場合は`--port=9090`などとオプションで指定する。
