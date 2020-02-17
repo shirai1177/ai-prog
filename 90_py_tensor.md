@@ -177,7 +177,8 @@ wget https://github.com/gitbucket/gitbucket/releases/download/4.31.2/gitbucket.w
 ```
 sudo apt-get install openjdk-8-jre
 
-java -jar gitbucket.war > log 2>&1 &
+# start_gitbucket.sh へ以下を登録
+java -jar /home/gcpadmin/gitbucket/gitbucket.war > /home/gcpadmin/gitbucket/log 2>&1 &
 ```
 ポート番号はデフォルトで8080。<br>
 変更したい場合は`--port=9090`などとオプションで指定する。
