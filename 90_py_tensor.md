@@ -82,10 +82,22 @@ reboot
 
 ### Anaconda3 (5.x.x) の入手とインストール
 
-https://www.anaconda.com/download/ から対応プラットフォーム版を入手しインストールする。
+https://www.anaconda.com/download/ から対応プラットフォーム版を入手しインストールする。パスも通す。
 
 ```
 bash Anaconda3-2019.07-Linux-x86_64.sh -b
+
+vi .profile
+PATH=$HOME/anaconda3/bin:$PATH
+```
+
+### TensorFlow と Keras のインストール
+
+TensorFlowのモジュール名は、その時のバージョンにより適宜変更する。<br>
+
+```
+pip install tensorflow==2.0.0
+pip install keras
 ```
 
 ### jupyter notebook の設定
@@ -148,15 +160,6 @@ WantedBy=multi-user.target
 
 > 自動起動の設定をする前に、jupyter notebookの起動コマンドを、start_jupyter.shとして保存
 
-
-## TensorFlow と Keras のインストール
-
-TensorFlowのモジュール名は、その時のバージョンにより適宜変更する。<br>
-
-```
-pip install tensorflow==2.0.0
-pip install keras
-```
 
 ## GitBucket のインストールと起動
 
