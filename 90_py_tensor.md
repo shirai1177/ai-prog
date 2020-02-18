@@ -223,3 +223,29 @@ tar xvf gitrepo.tar
 sudo systemctl enable gitbucket
 sudo systemctl start gitbucket
 ```
+
+### crontab設定
+```
+0 18 * * * /sbin/shutdown -h now
+```
+
+### edu_make.shの作成
+```
+vi edu_make.sh 
+CONTENT_FILES="make_study.sh tools"
+tar cvf edu_content.tar $CONTENT_FILES
+
+gsutil cp edu_content.tar gs://ai-edu-storage
+rm -f edu_content.tar
+```
+
+### repo_make.shの作成
+```
+vi repo_make.sh 
+sudo systemctl stop gitbucket
+sleep 5
+tar cvf gitrepo.tar .gitbucket/
+gsutil cp gitrepo.tar gs://ai-edu-storage
+rm -f gitrepo.tar
+sudo systemctl start gitbucket
+```
