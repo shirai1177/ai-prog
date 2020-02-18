@@ -137,9 +137,11 @@ SSLの標準ポート（443）を使う場合、rootで起動する必要があ�
 起動ファイルの作成
 
 ```
-vi start_jupyter
+vi start_jupyter.sh
 #!/bin/bash
 /home/gcpadmin/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
+
+chmod 755 start_jupyter.sh
 ```
 
 ### サービスへの登録
@@ -184,10 +186,11 @@ wget https://github.com/gitbucket/gitbucket/releases/download/4.31.1/gitbucket.w
 ```
 sudo apt-get install openjdk-8-jre
 
-# start_gitbucket.sh へ以下を保存
-
+vi start_gitbucket.sh
 #!/bin/bash
 java -jar /home/gcpadmin/gitbucket/gitbucket.war > /home/gcpadmin/gitbucket/log 2>&1 &
+
+chmod 755 start_gitbucket.sh
 ```
 ポート番号はデフォルトで8080。<br>
 変更したい場合は`--port=9090`などとオプションで指定する。
