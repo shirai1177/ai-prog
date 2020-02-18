@@ -215,7 +215,7 @@ WantedBy=multi-user.target
 ```
 
 ```
-cp gitbucket.service /etc/systemd/system
+sudo cp gitbucket.service /etc/systemd/system
 
 cd $HOME
 gsutil cp gs://ai-edu-storage/gitrepo.tar .
