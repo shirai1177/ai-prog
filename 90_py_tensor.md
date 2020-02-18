@@ -85,6 +85,7 @@ reboot
 https://www.anaconda.com/download/ から対応プラットフォーム版を入手しインストールする。パスも通す。
 
 ```
+wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
 bash Anaconda3-2019.07-Linux-x86_64.sh -b
 
 vi .profile
