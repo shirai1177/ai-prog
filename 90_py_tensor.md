@@ -213,3 +213,9 @@ ExecStart=/home/gcpadmin/gitbucket/start_gitbucket.sh
 [Install]
 WantedBy=multi-user.target
 ```
+
+```
+cp gitbucket.service /etc/systemd/system
+sudo systemctl enable gitbucket
+sudo systemctl start gitbucket
+```
