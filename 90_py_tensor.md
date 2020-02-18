@@ -175,7 +175,7 @@ wget https://github.com/gitbucket/gitbucket/releases/download/4.18.0/gitbucket.w
 2018/09/30時点の最新は以下（一応動作確認済）
 wget https://github.com/gitbucket/gitbucket/releases/download/4.29.0/gitbucket.war
 今使っている最新はこちら
-wget https://github.com/gitbucket/gitbucket/releases/download/4.31.2/gitbucket.war
+wget https://github.com/gitbucket/gitbucket/releases/download/4.31.1/gitbucket.war
 ```
 
 ### java8をインストールし、GitBucketを起動する
