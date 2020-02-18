@@ -224,6 +224,8 @@ sudo systemctl enable gitbucket
 sudo systemctl start gitbucket
 ```
 
+## その他の設定
+
 ### crontab設定
 ```
 0 18 * * * /sbin/shutdown -h now
