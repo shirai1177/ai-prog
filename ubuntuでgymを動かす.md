@@ -5,6 +5,9 @@ apt-get update
 apt-get upgrade -y
 apt-get install -y python3-opengl xvfb cmake zlib1g-dev swig imagemagick mpich
 
+apt-get install -y ffmpeg
+
+
 pip install mpi4py opencv-python
 
 git clone https://github.com/openai/gym
