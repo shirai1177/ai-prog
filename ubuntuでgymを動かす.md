@@ -10,4 +10,7 @@ pip install mpi4py opencv-python
 git clone https://github.com/openai/gym
 cd gym
 pip install -e .
+
+cd ~
+nohup xvfb-run -s "-screen 0 1400x900x24" jupyter notebook &
 ```
