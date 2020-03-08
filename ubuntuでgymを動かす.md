@@ -39,7 +39,7 @@ def huberloss(y_true, y_pred):
     return K.mean(loss)
 
 # model = load_model('./dqn180.model', custom_objects={"huberloss": huberloss})
-# model = load_model('./dqn195mse.model')
+model = load_model('./dqn.model')
 
 env = gym.make('CartPole-v0')
 
@@ -49,15 +49,16 @@ frames = []
 for t in range(200):
     # Render into buffer. 
     frames.append(env.render(mode = 'rgb_array'))
-    action = env.action_space.sample()
-    # action = np.argmax(model.predict(np.reshape(observation, [1, 4]))[0])
+    # action = env.action_space.sample()
+    action = np.argmax(model.predict(np.reshape(observation, [1, 4]))[0])
     observation, reward, done, info = env.step(action)
     if done:
-        for i in range(40):
-            frames.append(env.render(mode = 'rgb_array'))
-            action = 1 - action
-            env.step(action)
-        break
+        if t < 199:
+            for i in range(40):
+                frames.append(env.render(mode = 'rgb_array'))
+                action = 1 - action
+                env.step(action)
+            break
 
 fig = plt.gcf()
 patch = plt.imshow(frames[0])
@@ -66,8 +67,9 @@ plt.axis('off')
 def animate(i):
     patch.set_data(frames[i])
 
-anim = animation.FuncAnimation(fig, animate, frames = len(frames), interval=50)
+anim = animation.FuncAnimation(fig, animate, frames = len(frames), interval=5)
 # anim.save("CartPole-v0.gif", writer = 'imagemagick')
+
 ```
 
 DDQNで学習するコード
