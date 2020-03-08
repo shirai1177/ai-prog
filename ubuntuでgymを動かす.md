@@ -100,10 +100,9 @@ class QNetwork:
         self.model.add(Dense(hidden_size, activation='relu', input_dim=state_size))
         self.model.add(Dense(hidden_size, activation='relu'))
         self.model.add(Dense(action_size, activation='linear'))
-        #self.model.add(Dense(action_size, activation='softmax'))
-        self.optimizer = Adam(lr=learning_rate)  # 誤差を減らす学習方法はAdam
+        self.optimizer = Adam(lr=learning_rate)
         self.model.compile(loss='mean_squared_error', optimizer='adam')
-        #self.model.compile(loss=huberloss, optimizer=self.optimizer)
+        # self.model.compile(loss=huberloss, optimizer=self.optimizer)
 
     def save(self, path='./dqn.model'):
         self.model.save(path)
