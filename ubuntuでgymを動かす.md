@@ -4,19 +4,11 @@
 apt-get update
 apt-get upgrade -y
 apt-get install -y python3-opengl xvfb cmake zlib1g-dev swig imagemagick mpich
-
-apt-get install -y ffmpeg
-
+# apt-get install -y ffmpeg
 
 pip install mpi4py opencv-python
-
-git clone https://github.com/openai/gym
-cd gym
-pip install -e .
-
 pip install gym[atari]
 
-cd ~
 nohup xvfb-run -s "-screen 0 1400x900x24" jupyter notebook &
 ```
 
