@@ -14,6 +14,8 @@ git clone https://github.com/openai/gym
 cd gym
 pip install -e .
 
+pip install gym[atari]
+
 cd ~
 nohup xvfb-run -s "-screen 0 1400x900x24" jupyter notebook &
 ```
