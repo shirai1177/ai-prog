@@ -308,13 +308,15 @@ class QNetwork:
             inputs[i:i + 1] = state_b
             target = reward_b
 
-            if not (next_state_b == np.zeros(state_b.shape)).all(axis=1):
+#            if not (next_state_b == np.zeros(state_b.shape)).all(axis=1):
+            if next_state_b[0][0]:
                 retmainQs = self.model.predict(next_state_b)[0]
-                next_action = np.argmax(retmainQs)  # 最大の報酬を返す行動を選択する
+                next_action = np.argmax(retmainQs)
+                # ベルマン方程式で未来の報酬値を推定し教師データとする
                 target = reward_b + gamma * targetQN.model.predict(next_state_b)[0][next_action]
 
-            targets[i] = self.model.predict(state_b)    # Qネットワークの出力
-            targets[i][action_b] = target               # 教師信号
+            targets[i] = self.model.predict(state_b)
+            targets[i][action_b] = target
 
         self.model.fit(inputs, targets, epochs=3, verbose=0)
 
@@ -335,7 +337,7 @@ class Memory:
 class Actor:
     def get_action(self, state, episode, mainQN):   # [C]ｔ＋１での行動を返す
         # 徐々に最適行動のみをとる、ε-greedy法
-        epsilon = 0.001 + 0.9 / (1.0+episode)
+        epsilon = 0.001 + 0.9 / (1.0 + episode)
 
         if epsilon <= np.random.uniform(0, 1):
             retTargetQs = mainQN.model.predict(state)[0]
@@ -353,13 +355,13 @@ env = gym.make('CartPole-v0')
 num_episodes = 20  # 総試行回数
 max_number_of_steps = 200  # 1試行のstep数
 goal_average_reward = 195  # この報酬を超えると学習終了
-num_consecutive_iterations = 10  # 学習完了評価の平均計算を行う試行回数
+num_consecutive_iterations = 5  # 学習完了評価の平均計算を行う試行回数
 total_reward_vec = np.zeros(num_consecutive_iterations)  # 各試行の報酬を格納
 gamma = 0.99    # 割引係数
 
 
 hidden_size = 16               # 隠れ層のニューロンの数
-learning_rate = 0.001          # Q-networkの学習係数
+learning_rate = 0.001          # Adamの学習係数 def.0.001
 memory_size = 10000            # エクスペリエンスキューの大きさ
 batch_size = 32                # DNNのバッチサイズ
 
@@ -381,15 +383,13 @@ for episode in range(num_episodes):
         next_state, reward, done, info = env.step(action)   # 行動a_tの実行による、s_{t+1}, _R{t}を計算する
         next_state = np.reshape(next_state, [1, 4])     # list型のstateを、1行4列の行列に変換
 
-        # 報酬を設定し、与える
+        # 報酬の設定
+        # reward -= abs(next_state[0][2]) * 2  # 棒の傾きが大きいと報酬を減らす
+        reward = 0
+
         if done:
             next_state = np.zeros(state.shape)  # 次の状態s_{t+1}はない
-            if t < 195:
-                reward = -1  # 報酬クリッピング、報酬は1, 0, -1に固定
-            else:
-                reward = 1  # 立ったまま195step超えて終了時は報酬
-        else:
-            reward = 0  # 各ステップで立ってたら報酬追加（はじめからrewardに1が入っているが、明示的に表す）
+            reward = (t - 99) * 0.01            # 1エピソード終了時に進んだステップにより -1 ～ 1 の報酬
 
         episode_reward += 1 # reward  # 合計報酬を更新
 
