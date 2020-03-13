@@ -217,43 +217,6 @@ MountainCarの実行コード
 ```
 import gym
 import numpy as np
-from matplotlib import animation
-from matplotlib import pyplot as plt
-%matplotlib nbagg
-from keras.models import load_model
-
-model = load_model('./mountain.model')
-
-env = gym.make('MountainCar-v0')
-
-state = env.reset()
-
-frames = []
-for t in range(200):
-    # Render into buffer. 
-    frames.append(env.render(mode = 'rgb_array'))
-    #action = env.action_space.sample()
-    action = np.argmax(model.predict(np.reshape(state, [1, 2]))[0])
-    state, reward, done, info = env.step(action)
-    if done:
-        break
-
-
-fig = plt.gcf()
-patch = plt.imshow(frames[0])
-plt.axis('off')
-
-def animate(i):
-    patch.set_data(frames[i])
-
-anim = animation.FuncAnimation(fig, animate, frames = len(frames), interval=50)
-```
-
-MountainCarの学習
-
-```
-import gym
-import numpy as np
 import time
 from keras.models import Sequential
 from keras.layers import Dense
@@ -323,7 +286,6 @@ class Actor:
 #
 # main処理
 #
-DQN_MODE = 0    # 1がDQN、0がDDQN
 
 env = gym.make('MountainCar-v0')
 num_episodes = 100  # 総試行回数
@@ -364,9 +326,9 @@ for episode in range(num_episodes):
             next_state = np.zeros(state.shape)
             # reward = 2 - (t * 0.01)
             if t+1 < 199:
-                reward = 10
+                reward = 10  # ゴールに到達したら大きな報酬
 
-        episode_reward += 1 # reward  # 合計報酬を更新
+        episode_reward += 1
 
         memory.add((state, action, reward, next_state))     # エクスペリエンスを登録する
         state = next_state  # 状態更新
@@ -374,9 +336,6 @@ for episode in range(num_episodes):
         # Qネットワークの重みを学習・更新する
         if (memory.len() > batch_size):
             mainQN.replay(memory, batch_size, gamma, targetQN)
-
-        if DQN_MODE:
-            targetQN.model.set_weights(mainQN.model.get_weights())
 
         # 1エピソード終了時の処理
         if done:
