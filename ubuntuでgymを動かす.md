@@ -309,9 +309,9 @@ class Memory:
         return len(self.buffer)
 
 class Actor:
-    def get_action(self, state, episode, mainQN):   # [C]ｔ＋１での行動を返す
+    def get_action(self, state, episode, mainQN):
         # 徐々に最適行動のみをとる、ε-greedy法
-        epsilon = 0.001 + 0.9 / (1.0 + episode)
+        epsilon = 0.9 * (1 / (1 + episode))
 
         if epsilon <= np.random.uniform(0, 1):
             retTargetQs = mainQN.model.predict(state)[0]
@@ -336,11 +336,11 @@ gamma = 0.99    # 割引係数
 
 hidden_size = 16               # 隠れ層のニューロンの数
 learning_rate = 0.001          # Adamの学習係数 def.0.001
-memory_size = 10000            # エクスペリエンスキューの大きさ
-batch_size = 32                # DNNのバッチサイズ
+memory_size = 10000            # エクスペリエンスメモリーの大きさ
+batch_size = 32
 
-mainQN = QNetwork(hidden_size=hidden_size, learning_rate=learning_rate)     # メインのQネットワーク
-targetQN = QNetwork(hidden_size=hidden_size, learning_rate=learning_rate)   # 価値を計算するQネットワーク
+mainQN = QNetwork(hidden_size=hidden_size, learning_rate=learning_rate)
+targetQN = QNetwork(hidden_size=hidden_size, learning_rate=learning_rate)
 memory = Memory(max_size=memory_size)
 actor = Actor()
 
@@ -353,15 +353,15 @@ for episode in range(num_episodes):
     targetQN.model.set_weights(mainQN.model.get_weights())
 
     for t in range(max_number_of_steps + 1):
-        action = actor.get_action(state, episode, mainQN)   # 時刻tでの行動を決定する
-        next_state, reward, done, info = env.step(action)   # 行動a_tの実行による、s_{t+1}, _R{t}を計算する
-        next_state = np.reshape(next_state, [1, 2])     # list型のstateを、1行4列の行列に変換
+        action = actor.get_action(state, episode, mainQN)
+        next_state, reward, done, info = env.step(action)
+        next_state = np.reshape(next_state, [1, 2])
 
         # 報酬の設定
         reward = abs(next_state[0][1]) * 2   # 速度を報酬にする
 
         if done:
-            next_state = np.zeros(state.shape)  # 次の状態s_{t+1}はない
+            next_state = np.zeros(state.shape)
             # reward = 2 - (t * 0.01)
             if t+1 < 199:
                 reward = 10
@@ -380,10 +380,10 @@ for episode in range(num_episodes):
 
         # 1エピソード終了時の処理
         if done:
-            total_reward_vec = np.hstack((total_reward_vec[1:], episode_reward))  # 報酬を記録
+            total_reward_vec = np.hstack((total_reward_vec[1:], episode_reward))
             print(total_reward_vec)
             print('%d Episode finished after %d time steps / mean %f' % (episode, t + 1, total_reward_vec.mean()))
-            mainQN.save()
+            mainQN.save() # エピソード毎に保存
             break
 
     # 複数施行の平均報酬で終了を判断
