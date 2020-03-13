@@ -17,7 +17,9 @@ nohup xvfb-run -s "-screen 0 1400x900x24" jupyter notebook &
 https://qiita.com/bpzAkiyama/items/94ebd897c37ba4176492
 
 
-### CartPoleを動かすコード
+### CartPoleの問題
+
+CartPoleの実行コード
 
 ```
 import gym
@@ -58,7 +60,7 @@ anim = animation.FuncAnimation(fig, animate, frames = len(frames), interval=10)
 # anim.save("CartPole-v0.gif", writer = 'imagemagick')
 ```
 
-DDQNで学習するコード
+CartPoleをDDQNで学習するコード
 
 ```
 import gym
