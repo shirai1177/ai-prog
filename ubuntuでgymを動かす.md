@@ -16,6 +16,8 @@ nohup xvfb-run -s "-screen 0 1400x900x24" jupyter notebook &
 
 https://qiita.com/bpzAkiyama/items/94ebd897c37ba4176492
 
+https://qiita.com/sugulu/items/bc7c70e6658f204f85f9
+
 ***
 
 ### CartPoleの問題
