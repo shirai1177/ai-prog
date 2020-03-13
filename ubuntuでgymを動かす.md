@@ -12,12 +12,11 @@ pip install gym[atari]
 nohup xvfb-run -s "-screen 0 1400x900x24" jupyter notebook &
 ```
 
-
-
 ### 参考にしたサイト
 
 https://qiita.com/bpzAkiyama/items/94ebd897c37ba4176492
 
+***
 
 ### CartPoleの問題
 
