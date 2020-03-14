@@ -125,7 +125,7 @@ class Memory:
 class Actor:
     def get_action(self, state, episode, mainQN):
         # 徐々に最適行動のみをとる、ε-greedy法
-        epsilon = 0.001 + 0.9 / (1.0 + episode)
+        epsilon = 0.9 / (1.0 + episode)
 
         if epsilon <= np.random.uniform(0, 1):
             retTargetQs = mainQN.model.predict(state)[0]
@@ -137,16 +137,13 @@ class Actor:
 #
 # main処理
 #
-DQN_MODE = 0    # 1がDQN、0がDDQN
-
 env = gym.make('CartPole-v0')
-num_episodes = 20  # 総試行回数
+num_episodes = 100  # 総試行回数
 max_number_of_steps = 200  # 1試行のstep数
 goal_average_reward = 195  # この報酬を超えると学習終了
 num_consecutive_iterations = 5  # 学習完了評価の平均計算を行う試行回数
 total_reward_vec = np.zeros(num_consecutive_iterations)  # 各試行の報酬を格納
 gamma = 0.99    # 割引係数
-
 
 hidden_size = 16               # 隠れ層のニューロンの数
 learning_rate = 0.001          # Adamの学習係数 def.0.001
@@ -172,8 +169,8 @@ for episode in range(num_episodes):
         next_state = np.reshape(next_state, [1, 4])
 
         # 報酬の設定
-        # reward -= abs(next_state[0][2]) * 3  # 棒の傾きが大きいと報酬を減らす
-        reward = 0                             # 通常の行動は評価しない
+        reward -= abs(next_state[0][2]) * 3  # 棒の傾きが大きいと報酬を減らす
+        # reward = 0                             # 通常の行動は評価しない
 
         if done:
             next_state = np.zeros(state.shape)  # 次の状態をクリア
@@ -188,14 +185,14 @@ for episode in range(num_episodes):
         if (memory.len() > batch_size):
             mainQN.replay(memory, batch_size, gamma, targetQN)
 
-        if DQN_MODE:
-            targetQN.model.set_weights(mainQN.model.get_weights())
-
         # 1エピソード終了時の処理
         if done:
             total_reward_vec = np.hstack((total_reward_vec[1:], episode_reward))
             print(total_reward_vec)
             print('%d Episode finished after %d time steps / mean %f' % (episode, t + 1, total_reward_vec.mean()))
+            if (episode + 1) % 10 == 0:
+                print('Saved.')
+                mainQN.save()
             break
 
     # 平均報酬で終了を判断
