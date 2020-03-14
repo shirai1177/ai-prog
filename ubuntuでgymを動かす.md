@@ -214,6 +214,40 @@ MountainCarの実行コード
 ```
 import gym
 import numpy as np
+from matplotlib import animation
+from matplotlib import pyplot as plt
+%matplotlib nbagg
+from keras.models import load_model
+
+model = load_model('./mountain.model')
+
+env = gym.make('MountainCar-v0')
+state = env.reset()
+frames = []
+
+for t in range(200):
+    frames.append(env.render(mode = 'rgb_array'))
+    # action = env.action_space.sample()       # ランダムに選択
+    action = np.argmax(model.predict(np.reshape(state, [1, 2]))[0])    # AIが選択
+    state, reward, done, info = env.step(action)
+    if done:
+        break
+
+fig = plt.gcf()
+patch = plt.imshow(frames[0])
+plt.axis('off')
+
+def animate(i):
+    patch.set_data(frames[i])
+
+anim = animation.FuncAnimation(fig, animate, frames = len(frames), interval=50)
+```
+
+MountainCarの学習
+
+```
+import gym
+import numpy as np
 import time
 from keras.models import Sequential
 from keras.layers import Dense
