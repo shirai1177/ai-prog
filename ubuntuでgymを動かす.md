@@ -320,7 +320,6 @@ class Actor:
 #
 # main処理
 #
-
 env = gym.make('MountainCar-v0')
 num_episodes = 100  # 総試行回数
 max_number_of_steps = 200  # 1試行のstep数
