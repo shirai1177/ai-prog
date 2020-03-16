@@ -51,6 +51,7 @@ for t in range(300):
                 action = 1 - action
                 state, reward, done, info = env.step(action)
         break
+env.close()
 
 fig = plt.gcf()
 patch = plt.imshow(frames[0])
@@ -199,6 +200,7 @@ for episode in range(num_episodes):
     if total_reward_vec.mean() >= goal_average_reward:
         print('Episode %d train agent successfuly!' % episode)
         break
+env.close()
 
 # 学習結果をモデルとして保存
 print('Saved model.')
@@ -232,6 +234,7 @@ for t in range(200):
     state, reward, done, info = env.step(action)
     if done:
         break
+env.close()
 
 fig = plt.gcf()
 patch = plt.imshow(frames[0])
@@ -380,6 +383,7 @@ for episode in range(num_episodes):
     if total_reward_vec[0] and total_reward_vec.mean() < goal_reward:
         print('Episode %d train agent successfuly!' % episode)
         break
+env.close()
 
 # 学習結果をモデルとして保存
 print('Saved model.')
