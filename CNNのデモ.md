@@ -33,7 +33,7 @@ model.add(Dense(10))
 model.add(Activation("softmax"))
 model.compile(optimizer="Adam", loss="categorical_crossentropy", metrics=["accuracy"])
 model.summary()
-model.fit(x_train, y_train, batch_size=32, epochs=3)
+model.fit(x_train, y_train, batch_size=32, epochs=1)
 
 score = model.evaluate(x_test, y_test, verbose=0)
 print("テストデータによる汎化性能の評価 : ", score[1])
