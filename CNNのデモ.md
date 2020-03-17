@@ -74,5 +74,5 @@ for name in filename:
     p = model.predict(handwrite)
     np.set_printoptions(suppress=True)
     print(p)
-    print("予測: {}".format(np.argmax(p))) # 予測値の表示
+    print("予測: %d, 確率: %2.1f%%" % (np.argmax(p), p[0][np.argmax(p)]*100)) # 予測値の表示
 ```
