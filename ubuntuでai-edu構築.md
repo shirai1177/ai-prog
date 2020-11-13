@@ -2,7 +2,7 @@
 
 次を前提として構築  
 * OS: ubuntu16系
-* linuxユーザ: gcp:gcpadmin aws:ubuntu
+* linuxユーザ: root
 * ストレージは10GBほどあったほうが良い
 
 
@@ -125,7 +125,7 @@ SSLの標準ポート（443）を使う場合、rootで起動する必要があ�
 ```
 vi start_jupyter.sh
 #!/bin/bash
-/home/xxxxxx/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
+/root/anaconda3/bin/jupyter notebook > /root/jupyter.log 2>&1 &
 
 chmod 755 start_jupyter.sh
 ```
@@ -178,7 +178,7 @@ sudo apt-get install openjdk-8-jre
 
 vi start_gitbucket.sh
 #!/bin/bash
-java -jar /home/xxxxxx/gitbucket/gitbucket.war > /home/xxxxxx/gitbucket/log 2>&1 &
+java -jar /root/gitbucket/gitbucket.war --port=80 > /root/gitbucket/log 2>&1 &
 
 chmod 755 start_gitbucket.sh
 ```
@@ -197,9 +197,9 @@ After=network.target
 
 [Service]
 Type=forking
-User=xxxxxx
-Group=yyyyyy
-ExecStart=/home/xxxxxx/gitbucket/start_gitbucket.sh
+User=root
+#Group=yyyyyy
+ExecStart=/root/gitbucket/start_gitbucket.sh
 
 [Install]
 WantedBy=multi-user.target
